@@ -1,0 +1,1679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ═══ SEO META TAGS ═══ -->
+<title>InvoiceFlow – Free Invoice & Proposal Tool for UK Freelancers</title>
+<meta name="description" content="Create professional invoices and proposals in seconds. Free invoice generator for UK freelancers and small businesses. PDF export, VAT automation, client management and revenue reports — no sign-up needed.">
+<meta name="keywords" content="free invoice generator UK, invoice template UK, proposal generator freelancer, invoice software small business UK, free invoicing tool, VAT invoice UK, freelance invoice maker">
+<meta name="author" content="InvoiceFlow">
+<link rel="canonical" href="https://invoiceflow.vercel.app/">
+
+<!-- Open Graph (for social sharing previews) -->
+<meta property="og:title" content="InvoiceFlow – Free Invoice & Proposal Tool for UK Freelancers">
+<meta property="og:description" content="Professional invoices, client proposals, PDF export, and revenue reports — all free. No sign-up needed.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://invoiceflow.vercel.app/">
+<meta property="og:image" content="https://invoiceflow.vercel.app/og-image.png">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="InvoiceFlow – Free Invoice & Proposal Tool for UK Freelancers">
+<meta name="twitter:description" content="Professional invoices and proposals in 60 seconds. Free for UK freelancers.">
+
+<!-- JSON-LD Structured Data (helps Google understand your site) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "InvoiceFlow",
+  "description": "Free invoice and proposal generator for UK freelancers and small businesses. Create professional invoices, client proposals, and revenue reports with PDF export.",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "GBP"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "124"
+  }
+}
+</script>
+
+<!-- Google Analytics -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2FMNVZBJHD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2FMNVZBJHD');
+</script>
+
+<!-- Microsoft Clarity -->
+<script type="text/javascript">
+  (function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+  })(window, document, "clarity", "script", "wypqcxyuow");
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+:root{--primary:#4f46e5;--primary-dark:#3730a3;--primary-light:#e0e7ff;--accent:#06b6d4;--success:#10b981;--warning:#f59e0b;--danger:#ef4444;--bg:#f8fafc;--surface:#fff;--border:#e2e8f0;--text:#1e293b;--muted:#64748b;--r:12px;--sh:0 1px 3px rgba(0,0,0,.08),0 4px 16px rgba(0,0,0,.06);--shl:0 8px 32px rgba(79,70,229,.14)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+
+/* NAV */
+.topnav{display:flex;align-items:center;justify-content:space-between;padding:16px 36px;background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:200}
+.logo{font-size:1.3rem;font-weight:900;color:var(--primary);display:flex;align-items:center;gap:8px}
+.logo-box{width:30px;height:30px;background:var(--primary);border-radius:7px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.9rem}
+.nav-cta{background:var(--primary);color:#fff;border:none;padding:9px 22px;border-radius:8px;font-weight:700;cursor:pointer;font-size:.9rem}
+.nav-cta:hover{background:var(--primary-dark)}
+
+/* HERO */
+.hero{text-align:center;padding:80px 20px 50px;max-width:740px;margin:0 auto}
+.badge{display:inline-block;background:var(--primary-light);color:var(--primary);font-size:.75rem;font-weight:700;padding:4px 12px;border-radius:99px;margin-bottom:18px;text-transform:uppercase;letter-spacing:.05em}
+.hero h1{font-size:2.8rem;font-weight:900;line-height:1.1;margin-bottom:18px}
+.hero h1 span{color:var(--primary)}
+.hero p{font-size:1.1rem;color:var(--muted);margin-bottom:32px;max-width:520px;margin-left:auto;margin-right:auto}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn-hero{background:var(--primary);color:#fff;border:none;padding:14px 32px;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(79,70,229,.35);transition:all .2s}
+.btn-hero:hover{background:var(--primary-dark);transform:translateY(-1px)}
+.btn-outline{background:var(--surface);color:var(--text);border:1.5px solid var(--border);padding:14px 32px;border-radius:10px;font-size:1rem;font-weight:600;cursor:pointer;transition:all .2s}
+.btn-outline:hover{border-color:var(--primary);color:var(--primary)}
+
+/* FEATURES GRID */
+.feat-section{max-width:1000px;margin:70px auto;padding:0 20px}
+.feat-section h2{text-align:center;font-size:1.9rem;font-weight:800;margin-bottom:8px}
+.feat-section .sub{text-align:center;color:var(--muted);margin-bottom:40px}
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.feat-card{background:var(--surface);border-radius:var(--r);padding:26px;border:1px solid var(--border)}
+.feat-card:hover{box-shadow:var(--sh)}
+.feat-icon{font-size:1.9rem;margin-bottom:12px}
+.feat-card h3{font-size:1rem;font-weight:700;margin-bottom:7px}
+.feat-card p{font-size:.88rem;color:var(--muted);line-height:1.6}
+
+/* PRICING */
+.pricing{text-align:center;padding:70px 20px;background:var(--surface);border-top:1px solid var(--border)}
+.pricing h2{font-size:1.9rem;font-weight:800;margin-bottom:8px}
+.pricing .sub{color:var(--muted);margin-bottom:40px}
+.price-box{display:inline-block;background:linear-gradient(135deg,#f0f4ff,#e8f5fe);border:2px solid var(--primary);border-radius:20px;padding:36px 48px;max-width:380px}
+.price-box .plan{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--primary);margin-bottom:12px}
+.price-box .amount{font-size:2.8rem;font-weight:900;margin-bottom:6px}
+.price-box ul{list-style:none;text-align:left;margin:20px 0 28px;display:flex;flex-direction:column;gap:9px}
+.price-box ul li::before{content:"✓ ";color:var(--success);font-weight:700}
+.price-box ul li{font-size:.9rem;color:var(--muted)}
+.btn-start{width:100%;padding:13px;background:var(--primary);color:#fff;border:none;border-radius:9px;font-size:1rem;font-weight:700;cursor:pointer}
+.btn-start:hover{background:var(--primary-dark)}
+
+/* FOOTER */
+footer{text-align:center;padding:32px 20px;color:var(--muted);font-size:.83rem;border-top:1px solid var(--border)}
+
+/* ── APP SHELL ── */
+#app{display:none}
+.app-wrap{display:grid;grid-template-columns:230px 1fr;min-height:100vh}
+.sidebar{background:var(--surface);border-right:1px solid var(--border);padding:20px 14px;display:flex;flex-direction:column;gap:4px;position:sticky;top:0;height:100vh;overflow-y:auto}
+.sb-logo{font-size:1.15rem;font-weight:900;color:var(--primary);display:flex;align-items:center;gap:8px;padding:0 8px;margin-bottom:22px}
+.sb-logo .logo-box{width:26px;height:26px;font-size:.8rem}
+.sb-section{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);padding:14px 10px 6px}
+.nav-btn{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:9px;cursor:pointer;font-size:.88rem;font-weight:500;color:var(--muted);border:none;background:none;width:100%;text-align:left;transition:all .15s}
+.nav-btn:hover{background:var(--bg);color:var(--text)}
+.nav-btn.active{background:var(--primary-light);color:var(--primary);font-weight:700}
+.nav-btn .ni{font-size:1rem;width:20px;text-align:center}
+.sb-spacer{flex:1}
+.sb-user{padding:10px;background:var(--bg);border-radius:10px;display:flex;align-items:center;gap:9px;margin-top:8px}
+.avatar{width:32px;height:32px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.85rem;flex-shrink:0}
+.sb-user .uname{font-size:.82rem;font-weight:700}
+.sb-user .uplan{font-size:.72rem;color:var(--muted)}
+
+.main{padding:28px;overflow-y:auto}
+.page-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px}
+.page-title{font-size:1.4rem;font-weight:800}
+.btn-new{background:var(--primary);color:#fff;border:none;padding:9px 20px;border-radius:9px;font-size:.88rem;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;transition:all .2s}
+.btn-new:hover{background:var(--primary-dark);transform:translateY(-1px)}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:24px}
+.stat{background:var(--surface);border-radius:var(--r);padding:18px;border:1px solid var(--border)}
+.stat-lbl{font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:7px}
+.stat-val{font-size:1.8rem;font-weight:800}
+.stat-sub{font-size:.78rem;color:var(--muted);margin-top:3px}
+.up{color:var(--success)} .dn{color:var(--danger)}
+
+/* CARD / TABLE */
+.card{background:var(--surface);border-radius:var(--r);border:1px solid var(--border);overflow:hidden;margin-bottom:20px}
+.card-head{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.card-head h3{font-size:.95rem;font-weight:700}
+table{width:100%;border-collapse:collapse}
+th{text-align:left;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);padding:10px 18px;background:var(--bg);border-bottom:1px solid var(--border)}
+td{padding:12px 18px;font-size:.88rem;border-bottom:1px solid var(--border)}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#fafbff}
+.badge{display:inline-block;padding:3px 9px;border-radius:99px;font-size:.74rem;font-weight:700}
+.b-paid{background:#dcfce7;color:#166534}
+.b-pending{background:#fef3c7;color:#92400e}
+.b-draft{background:#f1f5f9;color:#475569}
+.b-overdue{background:#fee2e2;color:#991b1b}
+.b-sent{background:#dbeafe;color:#1e40af}
+.b-accepted{background:#dcfce7;color:#166534}
+.b-declined{background:#fee2e2;color:#991b1b}
+.act-btn{background:none;border:none;cursor:pointer;padding:3px 7px;border-radius:5px;font-size:.82rem;color:var(--muted)}
+.act-btn:hover{background:var(--primary-light);color:var(--primary)}
+
+/* EDITOR */
+.editor-wrap{display:grid;grid-template-columns:1fr 400px;gap:20px;align-items:start}
+.form-block{background:var(--surface);border-radius:var(--r);border:1px solid var(--border);padding:22px;margin-bottom:14px}
+.form-block h3{font-size:.9rem;font-weight:700;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.row{display:grid;gap:12px;margin-bottom:12px}
+.row-2{grid-template-columns:1fr 1fr}
+.row-3{grid-template-columns:1fr 1fr 1fr}
+.row-1{grid-template-columns:1fr}
+.fld label{display:block;font-size:.75rem;font-weight:700;color:var(--muted);margin-bottom:4px;text-transform:uppercase;letter-spacing:.04em}
+.fld input,.fld select,.fld textarea{width:100%;padding:8px 11px;border:1.5px solid var(--border);border-radius:8px;font-size:.88rem;font-family:inherit;color:var(--text);background:var(--surface);transition:border .15s}
+.fld input:focus,.fld select:focus,.fld textarea:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(79,70,229,.1)}
+.fld textarea{min-height:70px;resize:vertical}
+
+/* LINE ITEMS */
+.li-table{width:100%;border-collapse:collapse;margin-bottom:12px}
+.li-table th{text-align:left;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);padding:6px 8px}
+.li-table td{padding:4px 6px}
+.li-table input{width:100%;padding:6px 8px;border:1.5px solid var(--border);border-radius:6px;font-size:.85rem;font-family:inherit}
+.li-table input:focus{outline:none;border-color:var(--primary)}
+.btn-add-li{width:100%;padding:7px;background:none;border:1.5px dashed var(--border);border-radius:8px;color:var(--muted);font-size:.83rem;cursor:pointer;margin-top:4px;transition:all .15s}
+.btn-add-li:hover{border-color:var(--primary);color:var(--primary);background:var(--primary-light)}
+.rm-btn{background:none;border:none;cursor:pointer;color:var(--danger);font-size:1rem;padding:2px 5px;border-radius:4px}
+.rm-btn:hover{background:#fee2e2}
+.totals{display:flex;flex-direction:column;align-items:flex-end;gap:5px;padding-top:10px;border-top:1px solid var(--border)}
+.tot-row{display:flex;gap:36px;justify-content:space-between;min-width:230px;font-size:.88rem}
+.tot-row.grand{font-size:1.05rem;font-weight:800;color:var(--primary);border-top:2px solid var(--primary-light);padding-top:7px;margin-top:3px}
+
+/* PREVIEW PANEL */
+.preview-panel{background:var(--surface);border-radius:var(--r);border:1px solid var(--border);position:sticky;top:20px}
+.prev-head{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.prev-head h3{font-size:.9rem;font-weight:700}
+.prev-actions{display:flex;gap:6px}
+.btn-sm{background:var(--bg);border:1px solid var(--border);color:var(--muted);padding:6px 12px;border-radius:7px;font-size:.78rem;cursor:pointer;font-weight:600;transition:all .15s;display:flex;align-items:center;gap:4px}
+.btn-sm:hover{background:var(--primary-light);color:var(--primary);border-color:var(--primary)}
+.prev-body{padding:24px;font-size:.8rem}
+
+/* Invoice preview styles */
+.inv-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px}
+.inv-biz-name{font-size:1.2rem;font-weight:900;color:var(--primary)}
+.inv-biz-sub{font-size:.72rem;color:var(--muted);margin-top:2px;line-height:1.5}
+.inv-meta-right{text-align:right}
+.inv-num{font-size:.95rem;font-weight:800}
+.inv-dates{font-size:.72rem;color:var(--muted);margin-top:3px;line-height:1.6}
+.inv-parties{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px}
+.inv-party h4{font-size:.65rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:4px}
+.inv-party p{line-height:1.55;color:var(--text)}
+.inv-tbl{width:100%;border-collapse:collapse;margin-bottom:14px}
+.inv-tbl th{background:var(--bg);padding:6px 8px;text-align:left;font-size:.68rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.inv-tbl td{padding:6px 8px;border-bottom:1px solid var(--border)}
+.inv-tbl th:last-child,.inv-tbl td:last-child{text-align:right}
+.inv-tots{display:flex;flex-direction:column;align-items:flex-end;gap:3px}
+.inv-tot-row{display:flex;gap:24px;min-width:170px;justify-content:space-between;font-size:.8rem}
+.inv-tot-row.grand{font-weight:800;color:var(--primary);font-size:.92rem;border-top:2px solid var(--primary-light);padding-top:5px;margin-top:2px}
+.inv-footer-note{margin-top:18px;padding-top:12px;border-top:1px solid var(--border);color:var(--muted);font-size:.72rem;line-height:1.5}
+.inv-status-strip{background:var(--primary);color:#fff;text-align:center;padding:5px;font-size:.7rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;border-radius:0 0 var(--r) var(--r)}
+
+/* PROPOSAL preview */
+.prop-cover{background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;padding:28px;border-radius:var(--r) var(--r) 0 0;margin:-24px -24px 20px}
+.prop-cover-title{font-size:1.3rem;font-weight:900;margin-bottom:4px}
+.prop-cover-sub{font-size:.78rem;opacity:.85}
+.prop-section-title{font-size:.72rem;text-transform:uppercase;letter-spacing:.07em;color:var(--primary);font-weight:700;margin:14px 0 6px;padding-bottom:4px;border-bottom:1px solid var(--primary-light)}
+.prop-body-text{font-size:.8rem;color:var(--muted);line-height:1.6}
+.prop-deliv-item{display:flex;gap:6px;align-items:flex-start;margin-bottom:5px;font-size:.8rem}
+.prop-deliv-item::before{content:"✓";color:var(--success);font-weight:700;flex-shrink:0}
+.prop-timeline{display:flex;flex-direction:column;gap:6px;margin:6px 0}
+.prop-tl-row{display:flex;gap:10px;align-items:center;font-size:.78rem}
+.prop-tl-dot{width:8px;height:8px;border-radius:50%;background:var(--primary);flex-shrink:0}
+.prop-tl-label{font-weight:600;min-width:80px}
+.prop-tl-desc{color:var(--muted)}
+.prop-terms{font-size:.75rem;color:var(--muted);line-height:1.6;padding:10px;background:var(--bg);border-radius:8px;margin-top:6px}
+
+/* TEMPLATES PAGE */
+.tpl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
+.tpl-card{background:var(--surface);border-radius:var(--r);border:2px solid var(--border);overflow:hidden;cursor:pointer;transition:all .2s}
+.tpl-card:hover{box-shadow:var(--sh);border-color:var(--primary)}
+.tpl-card.active-tpl{border-color:var(--primary);box-shadow:var(--shl)}
+.tpl-thumb{height:180px;display:flex;align-items:center;justify-content:center;font-size:3rem;position:relative;overflow:hidden}
+.tpl-check{position:absolute;top:10px;right:10px;width:26px;height:26px;background:var(--primary);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.8rem;display:none}
+.tpl-card.active-tpl .tpl-check{display:flex}
+.tpl-info{padding:16px}
+.tpl-name{font-weight:700;font-size:.95rem;margin-bottom:4px}
+.tpl-desc{font-size:.82rem;color:var(--muted)}
+.tpl-tag{display:inline-block;background:var(--primary-light);color:var(--primary);font-size:.7rem;font-weight:700;padding:2px 8px;border-radius:99px;margin-top:8px}
+
+/* CLIENTS */
+.clients-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
+.client-card{background:var(--surface);border-radius:var(--r);border:1px solid var(--border);padding:18px;transition:box-shadow .15s;cursor:pointer}
+.client-card:hover{box-shadow:var(--sh)}
+.cli-av{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.05rem;color:#fff;margin-bottom:10px}
+.cli-name{font-weight:700;font-size:.95rem;margin-bottom:2px}
+.cli-email{font-size:.8rem;color:var(--muted);margin-bottom:10px}
+.cli-stats{display:flex;gap:14px}
+.cli-stat .val{font-weight:700;font-size:.9rem}
+.cli-stat .lbl{font-size:.75rem;color:var(--muted)}
+
+/* REPORTS */
+.report-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.chart-card{background:var(--surface);border-radius:var(--r);border:1px solid var(--border);padding:20px}
+.chart-card h3{font-size:.95rem;font-weight:700;margin-bottom:16px}
+.bar-chart{display:flex;flex-direction:column;gap:8px}
+.bar-row{display:flex;align-items:center;gap:10px;font-size:.82rem}
+.bar-label{width:64px;color:var(--muted);text-align:right;flex-shrink:0}
+.bar-track{flex:1;background:var(--bg);border-radius:99px;height:20px;overflow:hidden}
+.bar-fill{height:100%;background:var(--primary);border-radius:99px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;color:#fff;font-size:.7rem;font-weight:700;transition:width .6s ease;min-width:30px}
+.bar-fill.accent{background:var(--accent)}
+.pie-list{display:flex;flex-direction:column;gap:10px}
+.pie-row{display:flex;align-items:center;gap:10px;font-size:.85rem}
+.pie-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0}
+.pie-name{flex:1}
+.pie-val{font-weight:700}
+
+/* MODAL */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;z-index:999}
+.modal{background:var(--surface);border-radius:18px;padding:36px;max-width:440px;width:92%;box-shadow:0 24px 80px rgba(0,0,0,.2)}
+.modal h2{font-size:1.35rem;font-weight:800;margin-bottom:10px}
+.modal p{color:var(--muted);margin-bottom:22px;line-height:1.6;font-size:.92rem}
+.modal-btns{display:flex;gap:10px;justify-content:flex-end}
+.btn-cancel{background:none;border:1.5px solid var(--border);color:var(--muted);padding:10px 22px;border-radius:8px;font-size:.9rem;font-weight:600;cursor:pointer}
+.btn-confirm{background:var(--primary);color:#fff;border:none;padding:10px 22px;border-radius:8px;font-size:.9rem;font-weight:700;cursor:pointer}
+.btn-danger-confirm{background:var(--danger);color:#fff;border:none;padding:10px 22px;border-radius:8px;font-size:.9rem;font-weight:700;cursor:pointer}
+
+/* EMPTY STATE */
+.empty{text-align:center;padding:50px 20px;color:var(--muted)}
+.empty .ei{font-size:3rem;margin-bottom:14px}
+.empty p{margin-bottom:18px;font-size:.95rem}
+
+/* TOAST */
+.toast{position:fixed;bottom:24px;right:24px;padding:12px 20px;border-radius:10px;font-size:.88rem;font-weight:600;color:#fff;background:var(--text);opacity:0;transform:translateY(10px);transition:all .3s;z-index:9999;pointer-events:none}
+.toast.show{opacity:1;transform:translateY(0)}
+.toast.ok{background:var(--success)}
+.toast.err{background:var(--danger)}
+
+/* FREE BAR */
+.free-bar{background:linear-gradient(90deg,#10b981,#06b6d4);color:#fff;text-align:center;padding:9px;font-size:.83rem;font-weight:600}
+
+/* FAQ */
+.faq-section{max-width:740px;margin:0 auto 80px;padding:0 20px}
+.faq-section h2{text-align:center;font-size:1.9rem;font-weight:800;margin-bottom:8px}
+.faq-section .sub{text-align:center;color:var(--muted);margin-bottom:36px}
+.faq-item{border:1px solid var(--border);border-radius:12px;margin-bottom:10px;overflow:hidden}
+.faq-q{padding:16px 20px;font-weight:700;font-size:.95rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;background:var(--surface);user-select:none}
+.faq-q:hover{background:#fafbff}
+.faq-arrow{font-size:.8rem;color:var(--muted);transition:transform .2s;flex-shrink:0}
+.faq-item.open .faq-arrow{transform:rotate(180deg)}
+.faq-a{padding:0 20px;max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s;font-size:.9rem;color:var(--muted);line-height:1.7;background:var(--surface)}
+.faq-item.open .faq-a{max-height:300px;padding:0 20px 16px}
+
+/* DEMO TABS on landing */
+.demo-section{max-width:960px;margin:0 auto 80px;padding:0 20px}
+.demo-section h2{text-align:center;font-size:1.9rem;font-weight:800;margin-bottom:8px}
+.demo-section .sub{text-align:center;color:var(--muted);margin-bottom:32px}
+.demo-tabs{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-bottom:24px}
+.demo-tab{background:var(--surface);border:1.5px solid var(--border);color:var(--muted);padding:9px 18px;border-radius:99px;font-size:.88rem;font-weight:600;cursor:pointer;transition:all .2s}
+.demo-tab:hover{border-color:var(--primary);color:var(--primary)}
+.demo-tab.active{background:var(--primary);border-color:var(--primary);color:#fff}
+.demo-frame{background:var(--surface);border-radius:16px;border:1px solid var(--border);box-shadow:0 8px 40px rgba(79,70,229,.12);overflow:hidden}
+.demo-bar{background:#f1f5f9;padding:10px 14px;display:flex;gap:5px;align-items:center;border-bottom:1px solid var(--border)}
+.demo-dot{width:10px;height:10px;border-radius:50%}
+.demo-url{margin-left:8px;font-size:.72rem;color:#94a3b8;background:#e2e8f0;padding:3px 12px;border-radius:99px}
+.demo-content{padding:24px;display:none}
+.demo-content.active{display:block}
+.demo-mini-stat{background:var(--bg);border-radius:10px;padding:14px;border:1px solid var(--border)}
+.demo-mini-stat .lbl{font-size:.7rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:5px}
+.demo-mini-stat .val{font-size:1.6rem;font-weight:800}
+.demo-row{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid var(--border);font-size:.85rem}
+.demo-row:last-child{border-bottom:none}
+.demo-inv-preview{background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px;font-size:.8rem}
+.demo-inv-header{background:linear-gradient(135deg,#4f46e5,#06b6d4);color:#fff;padding:12px 16px;border-radius:8px;margin-bottom:12px;display:flex;justify-content:space-between}
+.demo-tpl{border:2px solid var(--border);border-radius:10px;overflow:hidden;cursor:pointer;transition:all .2s}
+.demo-tpl:hover{border-color:var(--primary)}
+.demo-tpl-thumb{height:80px;display:flex;align-items:center;justify-content:center;font-size:1.8rem}
+.demo-tpl-name{padding:8px 12px;font-size:.82rem;font-weight:700;border-top:1px solid var(--border)}
+.demo-bar-row{display:flex;align-items:center;gap:8px;margin-bottom:7px;font-size:.8rem}
+.demo-bar-label{width:50px;color:var(--muted);text-align:right;font-size:.75rem}
+.demo-bar-track{flex:1;background:var(--bg);border-radius:99px;height:16px;overflow:hidden}
+.demo-bar-fill{height:100%;background:var(--primary);border-radius:99px;display:flex;align-items:center;justify-content:flex-end;padding-right:6px;color:#fff;font-size:.65rem;font-weight:700}
+@media(max-width:768px){
+  .app-wrap{grid-template-columns:1fr}
+  .sidebar{display:none}
+  .editor-wrap{grid-template-columns:1fr}
+  .preview-panel{position:static}
+  .hero h1{font-size:2rem}
+  .row-2,.row-3{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ LANDING ═══════════════ -->
+<div id="landing">
+  <nav class="topnav">
+    <div class="logo"><div class="logo-box">⚡</div>InvoiceFlow</div>
+    <button class="nav-cta" onclick="openApp()">Try Free — No Sign Up</button>
+  </nav>
+
+  <section class="hero">
+    <div class="badge">🎉 Free During Our Launch</div>
+    <h1>Invoices, Proposals &<br><span>Client Management</span><br>All in One Place</h1>
+    <p>Everything a UK freelancer needs — professional invoices, winning proposals, client profiles, PDF export, and revenue reports. Free during our launch period.</p>
+    <div class="hero-btns">
+      <button class="btn-hero" onclick="openApp()">🚀 Start Free — No Sign Up</button>
+      <button class="btn-outline" onclick="document.querySelector('.pricing').scrollIntoView({behavior:'smooth'})">See What's Included</button>
+    </div>
+  </section>
+
+  <section class="feat-section">
+    <h2>Everything You Need</h2>
+    <p class="sub">A full toolkit — not just an invoice generator.</p>
+    <div class="feat-grid">
+      <div class="feat-card"><div class="feat-icon">📄</div><h3>Professional Invoices</h3><p>Create stunning invoices with live preview and one-click PDF export. VAT, line items, payment terms — all handled.</p></div>
+      <div class="feat-card"><div class="feat-icon">📋</div><h3>Client Proposals</h3><p>Win more clients with polished project proposals. Include scope, deliverables, timeline, pricing, and terms.</p></div>
+      <div class="feat-card"><div class="feat-icon">🎨</div><h3>Multiple Templates</h3><p>Choose from Modern, Minimal, Bold, and Classic templates for both invoices and proposals. Switch any time.</p></div>
+      <div class="feat-card"><div class="feat-icon">👥</div><h3>Client Profiles</h3><p>Save client details once, auto-fill forever. See every invoice and proposal sent to each client at a glance.</p></div>
+      <div class="feat-card"><div class="feat-icon">📊</div><h3>Revenue Reports</h3><p>Monthly revenue charts, outstanding payments, top clients, and income summaries — all auto-generated.</p></div>
+      <div class="feat-card"><div class="feat-icon">⬇️</div><h3>PDF Export</h3><p>Download any invoice or proposal as a beautifully formatted PDF, ready to email or print instantly.</p></div>
+    </div>
+  </section>
+
+  <!-- TABBED DEMO -->
+  <section class="demo-section">
+    <h2>See Every Page in Action</h2>
+    <p class="sub">Click each tab to preview what you get — all of it is free.</p>
+    <div class="demo-tabs">
+      <button class="demo-tab active" onclick="switchDemo('dashboard',this)">📊 Dashboard</button>
+      <button class="demo-tab" onclick="switchDemo('invoices',this)">📄 Invoices</button>
+      <button class="demo-tab" onclick="switchDemo('proposals',this)">📋 Proposals</button>
+      <button class="demo-tab" onclick="switchDemo('templates',this)">🎨 Templates</button>
+      <button class="demo-tab" onclick="switchDemo('reports',this)">📈 Reports</button>
+      <button class="demo-tab" onclick="switchDemo('clients',this)">👥 Clients</button>
+    </div>
+    <div class="demo-frame">
+      <div class="demo-bar">
+        <div class="demo-dot" style="background:#ef4444"></div>
+        <div class="demo-dot" style="background:#f59e0b"></div>
+        <div class="demo-dot" style="background:#22c55e"></div>
+        <div class="demo-url">invoiceflow.app/dashboard</div>
+      </div>
+
+      <!-- DASHBOARD TAB -->
+      <div class="demo-content active" id="demo-dashboard">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:20px">
+          <div class="demo-mini-stat"><div class="lbl">Total Revenue</div><div class="val" style="color:var(--primary)">£8,420</div></div>
+          <div class="demo-mini-stat"><div class="lbl">Outstanding</div><div class="val" style="color:var(--warning)">£1,200</div></div>
+          <div class="demo-mini-stat"><div class="lbl">Invoices</div><div class="val">14</div></div>
+          <div class="demo-mini-stat"><div class="lbl">Proposals</div><div class="val">6</div></div>
+          <div class="demo-mini-stat"><div class="lbl">Clients</div><div class="val">8</div></div>
+        </div>
+        <div style="background:var(--bg);border-radius:10px;padding:14px">
+          <div style="font-size:.8rem;font-weight:700;margin-bottom:10px">Recent Invoices</div>
+          <div class="demo-row"><span><strong>INV-014</strong> · Acme Corp</span><span><strong>£1,700</strong> <span style="background:#dcfce7;color:#166534;font-size:.72rem;font-weight:700;padding:2px 8px;border-radius:99px">paid</span></span></div>
+          <div class="demo-row"><span><strong>INV-013</strong> · Blue Studio</span><span><strong>£850</strong> <span style="background:#fef3c7;color:#92400e;font-size:.72rem;font-weight:700;padding:2px 8px;border-radius:99px">pending</span></span></div>
+          <div class="demo-row"><span><strong>INV-012</strong> · TechStart Ltd</span><span><strong>£2,400</strong> <span style="background:#dcfce7;color:#166534;font-size:.72rem;font-weight:700;padding:2px 8px;border-radius:99px">paid</span></span></div>
+        </div>
+      </div>
+
+      <!-- INVOICES TAB -->
+      <div class="demo-content" id="demo-invoices">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start">
+          <div>
+            <div style="font-size:.82rem;font-weight:700;margin-bottom:10px;color:var(--muted)">INVOICE EDITOR</div>
+            <div style="background:var(--bg);border-radius:8px;padding:12px;font-size:.8rem;display:flex;flex-direction:column;gap:8px">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+                <div style="background:#fff;border:1px solid var(--border);border-radius:6px;padding:7px;font-size:.75rem"><div style="color:var(--muted);font-size:.65rem;margin-bottom:2px">INVOICE #</div>INV-015</div>
+                <div style="background:#fff;border:1px solid var(--border);border-radius:6px;padding:7px;font-size:.75rem"><div style="color:var(--muted);font-size:.65rem;margin-bottom:2px">DUE DATE</div>30 Jun 2026</div>
+              </div>
+              <div style="background:#fff;border:1px solid var(--border);border-radius:6px;padding:7px;font-size:.75rem"><div style="color:var(--muted);font-size:.65rem;margin-bottom:2px">CLIENT</div>Acme Corp · billing@acme.com</div>
+              <div style="background:#fff;border:1px solid var(--border);border-radius:6px;padding:7px;font-size:.75rem">
+                <div style="color:var(--muted);font-size:.65rem;margin-bottom:6px">LINE ITEMS</div>
+                <div class="demo-row" style="font-size:.75rem">Web Design<span>£1,200</span></div>
+                <div class="demo-row" style="font-size:.75rem">SEO Setup<span>£300</span></div>
+                <div style="display:flex;justify-content:space-between;font-weight:800;color:var(--primary);padding-top:6px;font-size:.82rem">Total Due<span>£1,800</span></div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div style="font-size:.82rem;font-weight:700;margin-bottom:10px;color:var(--muted)">LIVE PREVIEW</div>
+            <div class="demo-inv-preview">
+              <div class="demo-inv-header"><div><div style="font-weight:900;font-size:.95rem">Jane Doe Design</div><div style="font-size:.65rem;opacity:.8">jane@example.com</div></div><div style="text-align:right"><div style="font-size:.65rem;opacity:.7">INVOICE</div><div style="font-weight:800">INV-015</div></div></div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:10px;font-size:.75rem"><div><strong>Acme Corp</strong><br><span style="color:var(--muted)">billing@acme.com</span></div><div style="text-align:right"><div style="color:var(--muted);font-size:.68rem">AMOUNT DUE</div><div style="font-size:1.1rem;font-weight:900;color:var(--primary)">£1,800</div></div></div>
+              <div style="border-top:1px solid var(--border);padding-top:8px"><div class="demo-row">Web Design<span>£1,200</span></div><div class="demo-row">SEO Setup<span>£300</span></div><div class="demo-row">VAT 20%<span>£300</span></div><div style="display:flex;justify-content:space-between;font-weight:800;color:var(--primary);padding-top:6px">Total<span>£1,800</span></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROPOSALS TAB -->
+      <div class="demo-content" id="demo-proposals">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start">
+          <div>
+            <div style="font-size:.82rem;font-weight:700;margin-bottom:10px;color:var(--muted)">PROPOSAL EDITOR</div>
+            <div style="display:flex;flex-direction:column;gap:8px;font-size:.8rem">
+              <div style="background:var(--bg);border-radius:8px;padding:10px"><div style="color:var(--muted);font-size:.7rem;margin-bottom:4px">PROJECT TITLE</div><div style="font-weight:700">Website Redesign for Acme Corp</div></div>
+              <div style="background:var(--bg);border-radius:8px;padding:10px"><div style="color:var(--muted);font-size:.7rem;margin-bottom:4px">DELIVERABLES</div><div style="display:flex;flex-direction:column;gap:3px"><div>✓ Custom website (5 pages)</div><div>✓ Mobile-responsive design</div><div>✓ SEO-optimised code</div><div>✓ 30-day support</div></div></div>
+              <div style="background:var(--bg);border-radius:8px;padding:10px"><div style="color:var(--muted);font-size:.7rem;margin-bottom:4px">TIMELINE</div><div style="display:flex;flex-direction:column;gap:4px"><div>📍 Discovery — 1 week</div><div>📍 Design — 2 weeks</div><div>📍 Build — 3 weeks</div><div>📍 Launch — 1 week</div></div></div>
+            </div>
+          </div>
+          <div>
+            <div style="font-size:.82rem;font-weight:700;margin-bottom:10px;color:var(--muted)">LIVE PREVIEW</div>
+            <div style="background:#fff;border-radius:10px;border:1px solid var(--border);overflow:hidden;font-size:.78rem">
+              <div style="background:linear-gradient(135deg,#4f46e5,#06b6d4);color:#fff;padding:16px"><div style="font-size:.65rem;opacity:.7;margin-bottom:4px">PROJECT PROPOSAL · PROP-006</div><div style="font-size:1rem;font-weight:900;margin-bottom:3px">Website Redesign for Acme Corp</div><div style="font-size:.72rem;opacity:.85">Prepared for Acme Corp by Jane Doe Design</div></div>
+              <div style="padding:14px"><div style="font-size:.65rem;text-transform:uppercase;letter-spacing:.07em;color:var(--primary);font-weight:700;margin-bottom:6px">What's Included</div><div style="display:flex;flex-direction:column;gap:3px;margin-bottom:10px"><div>✓ Custom website (5 pages)</div><div>✓ Mobile-responsive design</div><div>✓ SEO-optimised code</div></div><div style="display:flex;justify-content:space-between;font-size:.88rem;font-weight:800;color:var(--primary);border-top:2px solid #e0e7ff;padding-top:8px">Total Investment<span>£3,500</span></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TEMPLATES TAB -->
+      <div class="demo-content" id="demo-templates">
+        <div style="margin-bottom:14px;font-size:.9rem;font-weight:700">Invoice Templates — click to apply</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:24px">
+          <div class="demo-tpl" style="border-color:var(--primary)"><div class="demo-tpl-thumb" style="background:linear-gradient(135deg,#4f46e5,#06b6d4)">🎨</div><div class="demo-tpl-name">Modern Gradient <span style="color:var(--primary)">✓</span></div></div>
+          <div class="demo-tpl"><div class="demo-tpl-thumb" style="background:#f8fafc;border-bottom:3px solid #4f46e5">⬜</div><div class="demo-tpl-name">Minimal</div></div>
+          <div class="demo-tpl"><div class="demo-tpl-thumb" style="background:#1e293b">🖤</div><div class="demo-tpl-name">Bold Dark</div></div>
+          <div class="demo-tpl"><div class="demo-tpl-thumb" style="background:#fff">📜</div><div class="demo-tpl-name">Classic</div></div>
+        </div>
+        <div style="font-size:.9rem;font-weight:700;margin-bottom:14px">Proposal Templates</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px">
+          <div class="demo-tpl" style="border-color:var(--primary)"><div class="demo-tpl-thumb" style="background:linear-gradient(135deg,#4f46e5,#06b6d4)">🌈</div><div class="demo-tpl-name">Gradient Cover <span style="color:var(--primary)">✓</span></div></div>
+          <div class="demo-tpl"><div class="demo-tpl-thumb" style="background:linear-gradient(135deg,#1e293b,#334155)">🌙</div><div class="demo-tpl-name">Dark Professional</div></div>
+          <div class="demo-tpl"><div class="demo-tpl-thumb" style="background:#f8fafc">📄</div><div class="demo-tpl-name">Minimal White</div></div>
+          <div class="demo-tpl"><div class="demo-tpl-thumb" style="background:linear-gradient(135deg,#f59e0b,#ef4444)">🌅</div><div class="demo-tpl-name">Warm Sunset</div></div>
+        </div>
+      </div>
+
+      <!-- REPORTS TAB -->
+      <div class="demo-content" id="demo-reports">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px">
+          <div style="background:var(--bg);border-radius:10px;padding:16px">
+            <div style="font-size:.85rem;font-weight:700;margin-bottom:14px">Monthly Revenue (£)</div>
+            <div class="demo-bar-row"><div class="demo-bar-label">Jan</div><div class="demo-bar-track"><div class="demo-bar-fill" style="width:40%">£2,100</div></div></div>
+            <div class="demo-bar-row"><div class="demo-bar-label">Feb</div><div class="demo-bar-track"><div class="demo-bar-fill" style="width:55%">£2,900</div></div></div>
+            <div class="demo-bar-row"><div class="demo-bar-label">Mar</div><div class="demo-bar-track"><div class="demo-bar-fill" style="width:70%">£3,700</div></div></div>
+            <div class="demo-bar-row"><div class="demo-bar-label">Apr</div><div class="demo-bar-track"><div class="demo-bar-fill" style="width:85%">£4,500</div></div></div>
+            <div class="demo-bar-row"><div class="demo-bar-label">May</div><div class="demo-bar-track"><div class="demo-bar-fill" style="width:100%">£5,280</div></div></div>
+          </div>
+          <div style="background:var(--bg);border-radius:10px;padding:16px">
+            <div style="font-size:.85rem;font-weight:700;margin-bottom:14px">Invoice Status</div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;align-items:center;gap:8px;font-size:.83rem"><div style="width:11px;height:11px;border-radius:50%;background:#10b981;flex-shrink:0"></div><div style="flex:1">Paid (9)</div><div style="font-weight:700">£8,420</div></div>
+              <div style="display:flex;align-items:center;gap:8px;font-size:.83rem"><div style="width:11px;height:11px;border-radius:50%;background:#f59e0b;flex-shrink:0"></div><div style="flex:1">Pending (3)</div><div style="font-weight:700">£1,200</div></div>
+              <div style="display:flex;align-items:center;gap:8px;font-size:.83rem"><div style="width:11px;height:11px;border-radius:50%;background:#ef4444;flex-shrink:0"></div><div style="flex:1">Overdue (1)</div><div style="font-weight:700">£350</div></div>
+              <div style="display:flex;align-items:center;gap:8px;font-size:.83rem"><div style="width:11px;height:11px;border-radius:50%;background:#94a3b8;flex-shrink:0"></div><div style="flex:1">Draft (2)</div><div style="font-weight:700">£0</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CLIENTS TAB -->
+      <div class="demo-content" id="demo-clients">
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px">
+          <div style="background:var(--bg);border-radius:10px;padding:16px;border:1px solid var(--border)"><div style="width:38px;height:38px;border-radius:50%;background:#4f46e5;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;margin-bottom:8px">A</div><div style="font-weight:700;font-size:.9rem">Acme Corp</div><div style="font-size:.78rem;color:var(--muted);margin-bottom:8px">billing@acme.com</div><div style="display:flex;gap:12px;font-size:.78rem"><div><div style="font-weight:700">6</div><div style="color:var(--muted)">Invoices</div></div><div><div style="font-weight:700">2</div><div style="color:var(--muted)">Proposals</div></div><div><div style="font-weight:700;color:var(--success)">£4,200</div><div style="color:var(--muted)">Paid</div></div></div></div>
+          <div style="background:var(--bg);border-radius:10px;padding:16px;border:1px solid var(--border)"><div style="width:38px;height:38px;border-radius:50%;background:#06b6d4;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;margin-bottom:8px">B</div><div style="font-weight:700;font-size:.9rem">Blue Studio</div><div style="font-size:.78rem;color:var(--muted);margin-bottom:8px">hello@bluestudio.co</div><div style="display:flex;gap:12px;font-size:.78rem"><div><div style="font-weight:700">3</div><div style="color:var(--muted)">Invoices</div></div><div><div style="font-weight:700">1</div><div style="color:var(--muted)">Proposals</div></div><div><div style="font-weight:700;color:var(--success)">£2,550</div><div style="color:var(--muted)">Paid</div></div></div></div>
+          <div style="background:var(--bg);border-radius:10px;padding:16px;border:1px solid var(--border)"><div style="width:38px;height:38px;border-radius:50%;background:#10b981;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;margin-bottom:8px">T</div><div style="font-weight:700;font-size:.9rem">TechStart Ltd</div><div style="font-size:.78rem;color:var(--muted);margin-bottom:8px">finance@techstart.io</div><div style="display:flex;gap:12px;font-size:.78rem"><div><div style="font-weight:700">4</div><div style="color:var(--muted)">Invoices</div></div><div><div style="font-weight:700">3</div><div style="color:var(--muted)">Proposals</div></div><div><div style="font-weight:700;color:var(--success)">£3,800</div><div style="color:var(--muted)">Paid</div></div></div></div>
+        </div>
+      </div>
+
+    </div>
+    <div style="text-align:center;margin-top:24px">
+      <button class="btn-hero" onclick="openApp()">Try It Yourself — Free →</button>
+    </div>
+  </section>
+
+  <section class="pricing">
+    <h2>Simple Pricing</h2>
+    <p class="sub">Everything is free right now. No card, no catch.</p>
+    <div class="price-box">
+      <div class="plan">Launch Plan · Free Right Now</div>
+      <div class="amount">£0 <span style="font-size:1rem;font-weight:500;color:var(--muted)">/ month</span></div>
+      <ul>
+        <li>Unlimited invoices</li>
+        <li>Unlimited proposals</li>
+        <li>Unlimited clients</li>
+        <li>All 4 templates</li>
+        <li>PDF export</li>
+        <li>Revenue reports</li>
+        <li>VAT automation</li>
+        <li>No sign-up required</li>
+      </ul>
+      <button class="btn-start" onclick="openApp()">Get Started Free →</button>
+    </div>
+    <p style="margin-top:18px;font-size:.78rem;color:var(--muted)">Pricing may change in future. We'll give you plenty of notice.</p>
+  </section>
+
+  <!-- FAQ SECTION (boosts Google ranking) -->
+  <section class="faq-section">
+    <h2>Frequently Asked Questions</h2>
+    <p class="sub">Everything UK freelancers ask before switching to InvoiceFlow.</p>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Is InvoiceFlow really free? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Yes — completely free during our launch period. No credit card, no trial, no hidden fees. You get unlimited invoices, proposals, clients, PDF exports, and reports at no cost. Pricing may be introduced in future and we'll give plenty of notice.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Do I need to create an account or sign up? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">No sign-up required at all. Your data is saved automatically in your browser. Just open the app and start creating. Your invoices, clients, and settings are there every time you come back.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Can I add VAT to my invoices? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Yes. InvoiceFlow automatically calculates VAT at whatever rate you set (standard 20%, reduced 5%, or zero-rated 0%). The VAT amount and total are clearly shown on both the invoice editor and the PDF export.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Can I create client proposals as well as invoices? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Yes — proposals are fully built in. You can add a project description, deliverables list, timeline milestones, pricing breakdown, and payment terms. Proposals export as professional PDFs with a branded cover page, just like invoices.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Is InvoiceFlow suitable for UK self-employed and sole traders? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Absolutely. InvoiceFlow is built specifically for UK freelancers and sole traders. It handles GBP (£), UK VAT rates, and includes fields for your bank sort code and account number in the payment notes — exactly what UK clients expect to see.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Can I download invoices as PDF? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Yes, one click downloads a professionally formatted PDF invoice or proposal. The PDF includes your branding, client details, line items, VAT breakdown, total, and payment notes — ready to email directly to your client.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Can I track which invoices have been paid? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Yes. Every invoice has a status — Draft, Pending, Paid, or Overdue. Mark invoices as paid with one click. Your dashboard and reports automatically update to show total revenue, outstanding amounts, and monthly income charts.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What invoice templates are available? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Four invoice templates: Modern Gradient (bold indigo-to-cyan header), Minimal (clean lines), Bold Dark (dark professional header), and Classic (traditional centred layout). Four proposal templates: Gradient Cover, Dark Professional, Minimal White, and Warm Sunset. Switch any time from the Templates page.</div>
+    </div>
+  </section>
+
+  <footer>
+    <p style="margin-bottom:5px"><strong>InvoiceFlow</strong> — Built for UK freelancers & small businesses</p>
+    <p>© 2026 InvoiceFlow &nbsp;·&nbsp; invoiceflow.hello@gmail.com</p>
+  </footer>
+</div>
+
+<!-- ═══════════════ APP ═══════════════ -->
+<div id="app">
+  <div class="free-bar" style="display:flex;align-items:center;justify-content:center;gap:20px">
+    <span>🎉 InvoiceFlow is completely free during launch — unlimited invoices, proposals, templates &amp; reports.</span>
+    <button onclick="goHome()" style="background:rgba(255,255,255,.25);border:1px solid rgba(255,255,255,.4);color:#fff;padding:4px 14px;border-radius:99px;font-size:.78rem;font-weight:700;cursor:pointer">← Homepage</button>
+  </div>
+  <div class="app-wrap">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sb-logo" onclick="goHome()" style="cursor:pointer" title="Back to homepage"><div class="logo-box">⚡</div>InvoiceFlow</div>
+      <div class="sb-section">Main</div>
+      <button class="nav-btn active" id="nb-dashboard" onclick="showPage('dashboard')"><span class="ni">📊</span>Dashboard</button>
+      <button class="nav-btn" id="nb-invoices" onclick="showPage('invoices')"><span class="ni">📄</span>Invoices</button>
+      <button class="nav-btn" id="nb-proposals" onclick="showPage('proposals')"><span class="ni">📋</span>Proposals</button>
+      <div class="sb-section">Manage</div>
+      <button class="nav-btn" id="nb-clients" onclick="showPage('clients')"><span class="ni">👥</span>Clients</button>
+      <button class="nav-btn" id="nb-templates" onclick="showPage('templates')"><span class="ni">🎨</span>Templates</button>
+      <button class="nav-btn" id="nb-reports" onclick="showPage('reports')"><span class="ni">📈</span>Reports</button>
+      <div class="sb-section">Account</div>
+      <button class="nav-btn" id="nb-settings" onclick="showPage('settings')"><span class="ni">⚙️</span>Settings</button>
+      <div class="sb-spacer"></div>
+      <div class="sb-user">
+        <div class="avatar" id="sbAvatar">?</div>
+        <div><div class="uname" id="sbName">Your Business</div><div class="uplan">Free Launch 🎉</div></div>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+
+      <!-- ── DASHBOARD ── -->
+      <div id="pg-dashboard">
+        <div class="page-head">
+          <div class="page-title">Dashboard</div>
+          <button class="btn-new" onclick="showPage('invoices');setTimeout(startNewInvoice,80)">＋ New Invoice</button>
+        </div>
+        <div class="stats">
+          <div class="stat"><div class="stat-lbl">Total Revenue</div><div class="stat-val" id="ds-rev">£0</div><div class="stat-sub up">from paid invoices</div></div>
+          <div class="stat"><div class="stat-lbl">Outstanding</div><div class="stat-val" id="ds-out">£0</div><div class="stat-sub">awaiting payment</div></div>
+          <div class="stat"><div class="stat-lbl">Invoices</div><div class="stat-val" id="ds-inv">0</div><div class="stat-sub">total created</div></div>
+          <div class="stat"><div class="stat-lbl">Proposals</div><div class="stat-val" id="ds-prop">0</div><div class="stat-sub">total created</div></div>
+          <div class="stat"><div class="stat-lbl">Clients</div><div class="stat-val" id="ds-cli">0</div><div class="stat-sub">saved profiles</div></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>Recent Invoices</h3><button class="btn-sm" onclick="showPage('invoices')">View All →</button></div>
+          <div id="ds-inv-list"></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>Recent Proposals</h3><button class="btn-sm" onclick="showPage('proposals')">View All →</button></div>
+          <div id="ds-prop-list"></div>
+        </div>
+      </div>
+
+      <!-- ── INVOICES ── -->
+      <div id="pg-invoices" style="display:none">
+        <div id="inv-list-view">
+          <div class="page-head">
+            <div class="page-title">Invoices</div>
+            <button class="btn-new" onclick="startNewInvoice()">＋ New Invoice</button>
+          </div>
+          <div class="card">
+            <table><thead><tr><th>Invoice #</th><th>Client</th><th>Date</th><th>Amount</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody id="inv-tbody"></tbody></table>
+          </div>
+        </div>
+        <div id="inv-editor-view" style="display:none">
+          <div class="page-head">
+            <div style="display:flex;align-items:center;gap:10px">
+              <button class="btn-sm" onclick="backToInvList()">← Back</button>
+              <div class="page-title" id="inv-editor-title">New Invoice</div>
+            </div>
+            <div style="display:flex;gap:8px">
+              <button class="btn-sm" onclick="saveInvoice('draft')">💾 Draft</button>
+              <button class="btn-new" onclick="saveInvoice('pending')">📤 Save & Send</button>
+            </div>
+          </div>
+          <div class="editor-wrap">
+            <div>
+              <div class="form-block">
+                <h3>Invoice Details</h3>
+                <div class="row row-3">
+                  <div class="fld"><label>Invoice #</label><input id="i-num" placeholder="INV-001"></div>
+                  <div class="fld"><label>Issue Date</label><input type="date" id="i-date"></div>
+                  <div class="fld"><label>Due Date</label><input type="date" id="i-due"></div>
+                </div>
+              </div>
+              <div class="form-block">
+                <h3>Your Business</h3>
+                <div class="row row-2">
+                  <div class="fld"><label>Business Name</label><input id="i-biz" placeholder="Jane Doe Design"></div>
+                  <div class="fld"><label>Your Email</label><input type="email" id="i-biz-email" placeholder="jane@example.com"></div>
+                </div>
+                <div class="row row-1"><div class="fld"><label>Address</label><textarea id="i-biz-addr" placeholder="123 High St, London EC1A 1BB"></textarea></div></div>
+              </div>
+              <div class="form-block">
+                <h3>Bill To</h3>
+                <div class="fld" style="margin-bottom:10px"><label>Load Saved Client</label>
+                  <select id="i-cli-sel" onchange="fillInvClient(this.value)"><option value="">— Select client or fill manually —</option></select>
+                </div>
+                <div class="row row-2">
+                  <div class="fld"><label>Client / Company</label><input id="i-cli-name" placeholder="Acme Corp" oninput="invPreview()"></div>
+                  <div class="fld"><label>Client Email</label><input type="email" id="i-cli-email" placeholder="billing@acme.com" oninput="invPreview()"></div>
+                </div>
+                <div class="row row-1"><div class="fld"><label>Client Address</label><textarea id="i-cli-addr" placeholder="456 Business Park, Manchester" oninput="invPreview()"></textarea></div></div>
+              </div>
+              <div class="form-block">
+                <h3>Line Items</h3>
+                <table class="li-table">
+                  <thead><tr><th style="width:38%">Description</th><th style="width:14%">Qty</th><th style="width:20%">Price (£)</th><th style="width:18%">Total</th><th style="width:10%"></th></tr></thead>
+                  <tbody id="inv-items"></tbody>
+                </table>
+                <button class="btn-add-li" onclick="addInvItem()">＋ Add Line Item</button>
+                <div class="totals" style="margin-top:14px">
+                  <div class="tot-row"><span>Subtotal</span><span id="i-sub">£0.00</span></div>
+                  <div class="tot-row"><span>VAT (<input type="number" id="i-vat" value="20" min="0" max="100" style="width:38px;padding:2px 4px;border:1px solid var(--border);border-radius:4px;font-size:.82rem" onchange="invRecalc()">%)</span><span id="i-vat-amt">£0.00</span></div>
+                  <div class="tot-row grand"><span>Total Due</span><span id="i-grand">£0.00</span></div>
+                </div>
+              </div>
+              <div class="form-block">
+                <h3>Notes & Payment Details</h3>
+                <div class="fld"><label>Notes</label><textarea id="i-notes" placeholder="Payment due within 30 days. Bank transfer to Sort: 12-34-56, Acc: 12345678. Thank you!"></textarea></div>
+              </div>
+            </div>
+            <!-- PREVIEW -->
+            <div class="preview-panel">
+              <div class="prev-head"><h3>Live Preview</h3>
+                <div class="prev-actions">
+                  <button class="btn-sm" onclick="dlInvoicePDF()">⬇ PDF</button>
+                  <button class="btn-sm" onclick="copyLink()">🔗 Share</button>
+                </div>
+              </div>
+              <div class="prev-body" id="inv-preview"></div>
+              <div class="inv-status-strip" id="inv-strip">DRAFT</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── PROPOSALS ── -->
+      <div id="pg-proposals" style="display:none">
+        <div id="prop-list-view">
+          <div class="page-head">
+            <div class="page-title">Proposals</div>
+            <button class="btn-new" onclick="startNewProposal()">＋ New Proposal</button>
+          </div>
+          <div class="card">
+            <table><thead><tr><th>Proposal #</th><th>Project</th><th>Client</th><th>Value</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody id="prop-tbody"></tbody></table>
+          </div>
+        </div>
+        <div id="prop-editor-view" style="display:none">
+          <div class="page-head">
+            <div style="display:flex;align-items:center;gap:10px">
+              <button class="btn-sm" onclick="backToPropList()">← Back</button>
+              <div class="page-title" id="prop-editor-title">New Proposal</div>
+            </div>
+            <div style="display:flex;gap:8px">
+              <button class="btn-sm" onclick="saveProposal('draft')">💾 Draft</button>
+              <button class="btn-new" onclick="saveProposal('sent')">📤 Save & Send</button>
+            </div>
+          </div>
+          <div class="editor-wrap">
+            <div>
+              <div class="form-block">
+                <h3>Proposal Details</h3>
+                <div class="row row-3">
+                  <div class="fld"><label>Proposal #</label><input id="p-num" placeholder="PROP-001"></div>
+                  <div class="fld"><label>Date</label><input type="date" id="p-date"></div>
+                  <div class="fld"><label>Valid Until</label><input type="date" id="p-valid"></div>
+                </div>
+                <div class="row row-1"><div class="fld"><label>Project Title</label><input id="p-title" placeholder="Website Redesign for Acme Corp" oninput="propPreview()"></div></div>
+              </div>
+              <div class="form-block">
+                <h3>Your Business</h3>
+                <div class="row row-2">
+                  <div class="fld"><label>Your Name / Business</label><input id="p-biz" placeholder="Jane Doe Design"></div>
+                  <div class="fld"><label>Email</label><input type="email" id="p-biz-email" placeholder="jane@example.com"></div>
+                </div>
+              </div>
+              <div class="form-block">
+                <h3>Prepared For</h3>
+                <div class="fld" style="margin-bottom:10px"><label>Load Saved Client</label>
+                  <select id="p-cli-sel" onchange="fillPropClient(this.value)"><option value="">— Select client or fill manually —</option></select>
+                </div>
+                <div class="row row-2">
+                  <div class="fld"><label>Client / Company</label><input id="p-cli-name" placeholder="Acme Corp" oninput="propPreview()"></div>
+                  <div class="fld"><label>Client Email</label><input type="email" id="p-cli-email" placeholder="billing@acme.com" oninput="propPreview()"></div>
+                </div>
+              </div>
+              <div class="form-block">
+                <h3>Project Overview</h3>
+                <div class="row row-1"><div class="fld"><label>Project Description</label><textarea id="p-desc" rows="4" placeholder="Describe the project, goals, and what you'll deliver..." oninput="propPreview()"></textarea></div></div>
+              </div>
+              <div class="form-block">
+                <h3>Deliverables</h3>
+                <p style="font-size:.82rem;color:var(--muted);margin-bottom:10px">One deliverable per line</p>
+                <div class="fld"><textarea id="p-deliverables" rows="5" placeholder="Custom website design (up to 5 pages)&#10;Mobile-responsive layout&#10;Contact form integration&#10;SEO-optimised code&#10;30 days post-launch support" oninput="propPreview()"></textarea></div>
+              </div>
+              <div class="form-block">
+                <h3>Project Timeline</h3>
+                <p style="font-size:.82rem;color:var(--muted);margin-bottom:10px">Add timeline milestones</p>
+                <table class="li-table">
+                  <thead><tr><th style="width:35%">Phase / Milestone</th><th style="width:30%">Duration</th><th style="width:28%">Description</th><th style="width:7%"></th></tr></thead>
+                  <tbody id="p-timeline"></tbody>
+                </table>
+                <button class="btn-add-li" onclick="addTimeline()">＋ Add Milestone</button>
+              </div>
+              <div class="form-block">
+                <h3>Investment (Pricing)</h3>
+                <table class="li-table">
+                  <thead><tr><th style="width:40%">Item</th><th style="width:14%">Qty</th><th style="width:20%">Price (£)</th><th style="width:18%">Total</th><th style="width:8%"></th></tr></thead>
+                  <tbody id="prop-items"></tbody>
+                </table>
+                <button class="btn-add-li" onclick="addPropItem()">＋ Add Item</button>
+                <div class="totals" style="margin-top:14px">
+                  <div class="tot-row"><span>Subtotal</span><span id="p-sub">£0.00</span></div>
+                  <div class="tot-row"><span>VAT (<input type="number" id="p-vat" value="20" min="0" max="100" style="width:38px;padding:2px 4px;border:1px solid var(--border);border-radius:4px;font-size:.82rem" onchange="propRecalc()">%)</span><span id="p-vat-amt">£0.00</span></div>
+                  <div class="tot-row grand"><span>Total Investment</span><span id="p-grand">£0.00</span></div>
+                </div>
+              </div>
+              <div class="form-block">
+                <h3>Terms & Next Steps</h3>
+                <div class="fld"><textarea id="p-terms" rows="4" placeholder="50% deposit required to begin. Remaining 50% due on completion. All work remains property of Jane Doe Design until final payment is received. Proposal valid for 30 days."></textarea></div>
+              </div>
+            </div>
+            <!-- PROPOSAL PREVIEW -->
+            <div class="preview-panel">
+              <div class="prev-head"><h3>Live Preview</h3>
+                <div class="prev-actions">
+                  <button class="btn-sm" onclick="dlProposalPDF()">⬇ PDF</button>
+                  <button class="btn-sm" onclick="copyLink()">🔗 Share</button>
+                </div>
+              </div>
+              <div class="prev-body" id="prop-preview"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── TEMPLATES ── -->
+      <div id="pg-templates" style="display:none">
+        <div class="page-head"><div class="page-title">Templates</div></div>
+        <p style="color:var(--muted);margin-bottom:24px;font-size:.92rem">Choose your preferred look for invoices and proposals. Your selection is saved automatically.</p>
+        <div class="card" style="margin-bottom:24px">
+          <div class="card-head"><h3>Invoice Templates</h3></div>
+          <div style="padding:20px"><div class="tpl-grid" id="inv-tpl-grid"></div></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>Proposal Templates</h3></div>
+          <div style="padding:20px"><div class="tpl-grid" id="prop-tpl-grid"></div></div>
+        </div>
+      </div>
+
+      <!-- ── CLIENTS ── -->
+      <div id="pg-clients" style="display:none">
+        <div class="page-head">
+          <div class="page-title">Clients</div>
+          <button class="btn-new" onclick="showAddClient()">＋ Add Client</button>
+        </div>
+        <div class="clients-grid" id="clients-grid"></div>
+      </div>
+
+      <!-- ── REPORTS ── -->
+      <div id="pg-reports" style="display:none">
+        <div class="page-head"><div class="page-title">Reports</div></div>
+        <div class="stats" id="report-stats"></div>
+        <div class="report-grid">
+          <div class="chart-card">
+            <h3>Monthly Revenue (£)</h3>
+            <div class="bar-chart" id="monthly-chart"></div>
+          </div>
+          <div class="chart-card">
+            <h3>Invoice Status Breakdown</h3>
+            <div class="pie-list" id="status-chart"></div>
+          </div>
+          <div class="chart-card">
+            <h3>Top Clients by Revenue</h3>
+            <div class="bar-chart" id="client-chart"></div>
+          </div>
+          <div class="chart-card">
+            <h3>Proposals Conversion</h3>
+            <div class="pie-list" id="prop-chart"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── SETTINGS ── -->
+      <div id="pg-settings" style="display:none">
+        <div class="page-head"><div class="page-title">Settings</div></div>
+        <div class="form-block" style="max-width:640px">
+          <h3>Your Business Details</h3>
+          <p style="font-size:.83rem;color:var(--muted);margin-bottom:16px">Auto-filled on every invoice and proposal.</p>
+          <div class="row row-2">
+            <div class="fld"><label>Your Name</label><input id="s-name" placeholder="Jane Doe" oninput="saveSettings()"></div>
+            <div class="fld"><label>Business Name</label><input id="s-biz" placeholder="Jane Doe Design" oninput="saveSettings()"></div>
+          </div>
+          <div class="row row-2">
+            <div class="fld"><label>Email</label><input type="email" id="s-email" placeholder="jane@example.com" oninput="saveSettings()"></div>
+            <div class="fld"><label>Phone</label><input id="s-phone" placeholder="+44 7700 900000" oninput="saveSettings()"></div>
+          </div>
+          <div class="row row-1"><div class="fld"><label>Business Address</label><textarea id="s-addr" placeholder="123 High Street, London, EC1A 1BB" oninput="saveSettings()"></textarea></div></div>
+          <div class="row row-2">
+            <div class="fld"><label>VAT Number (optional)</label><input id="s-vat" placeholder="GB 123 456 789" oninput="saveSettings()"></div>
+            <div class="fld"><label>Bank / Payment Details</label><input id="s-bank" placeholder="Sort: 12-34-56 Acc: 12345678" oninput="saveSettings()"></div>
+          </div>
+          <div class="row row-1"><div class="fld"><label>Default Invoice Notes</label><textarea id="s-notes" placeholder="Payment due within 30 days..." oninput="saveSettings()"></textarea></div></div>
+          <button class="btn-new" style="margin-top:6px" onclick="saveSettings();toast('Settings saved!','ok')">Save Settings</button>
+        </div>
+        <div class="form-block" style="max-width:640px;margin-top:16px;background:linear-gradient(135deg,#f0fff8,#e8f5fe)">
+          <h3>🎉 You're on the Free Launch Plan</h3>
+          <p style="font-size:.88rem;color:var(--muted);margin-top:6px">All features are completely free right now — unlimited invoices, proposals, templates, reports, and clients. Enjoy!</p>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<!-- ADD CLIENT MODAL -->
+<div class="overlay" id="add-client-modal" style="display:none" onclick="if(event.target===this)closeModal('add-client-modal')">
+  <div class="modal">
+    <h2>Add New Client</h2>
+    <div class="row row-2" style="margin-bottom:12px">
+      <div class="fld"><label>Name / Company</label><input id="nc-name" placeholder="Acme Ltd"></div>
+      <div class="fld"><label>Email</label><input type="email" id="nc-email" placeholder="billing@acme.com"></div>
+    </div>
+    <div class="fld" style="margin-bottom:20px"><label>Address</label><textarea id="nc-addr" placeholder="456 Business Park, Manchester"></textarea></div>
+    <div class="modal-btns">
+      <button class="btn-cancel" onclick="closeModal('add-client-modal')">Cancel</button>
+      <button class="btn-confirm" onclick="addClient()">Save Client</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toastel"></div>
+
+<script>
+// ══════════════════════════════════════
+// FAQ TOGGLE
+// ══════════════════════════════════════
+function toggleFaq(el) {
+  const item = el.closest('.faq-item');
+  const isOpen = item.classList.contains('open');
+  // Close all
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  // Open clicked if it was closed
+  if (!isOpen) item.classList.add('open');
+}
+
+// ══════════════════════════════════════
+// DEMO TABS (landing page)
+// ══════════════════════════════════════
+function switchDemo(tab, btn){
+  document.querySelectorAll('.demo-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.demo-content').forEach(c=>c.classList.remove('active'));
+  btn.classList.add('active');
+  const el=document.getElementById('demo-'+tab);
+  if(el)el.classList.add('active');
+}
+
+// ══════════════════════════════════════
+// STATE
+// ══════════════════════════════════════
+const COLORS=['#4f46e5','#06b6d4','#10b981','#f59e0b','#ef4444','#8b5cf6','#ec4899'];
+let S={
+  invoices:[],proposals:[],clients:[],
+  settings:{name:'',biz:'',email:'',phone:'',addr:'',vat:'',bank:'',notes:'Payment due within 30 days. Thank you for your business!'},
+  invTpl:'modern', propTpl:'gradient',
+  nextInv:1, nextProp:1
+};
+try{const d=localStorage.getItem('iflow2');if(d)S={...S,...JSON.parse(d)}}catch(e){}
+const save=()=>{try{localStorage.setItem('iflow2',JSON.stringify(S))}catch(e){}};
+
+// ══════════════════════════════════════
+// NAVIGATION
+// ══════════════════════════════════════
+function openApp(){
+  document.getElementById('landing').style.display='none';
+  document.getElementById('app').style.display='block';
+  loadSettings();renderTemplates();
+  showPage('dashboard');
+}
+function goHome(){
+  document.getElementById('app').style.display='none';
+  document.getElementById('landing').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function showPage(p){
+  ['dashboard','invoices','proposals','clients','templates','reports','settings'].forEach(x=>{
+    const el=document.getElementById('pg-'+x);if(el)el.style.display=x===p?'block':'none';
+    const nb=document.getElementById('nb-'+x);if(nb)nb.classList.toggle('active',x===p);
+  });
+  if(p==='dashboard')renderDashboard();
+  if(p==='invoices'){backToInvList();renderInvTable();}
+  if(p==='proposals'){backToPropList();renderPropTable();}
+  if(p==='clients')renderClients();
+  if(p==='reports')renderReports();
+  if(p==='templates')renderTemplates();
+}
+function closeModal(id){document.getElementById(id).style.display='none';}
+
+// ══════════════════════════════════════
+// TOAST
+// ══════════════════════════════════════
+let _tt;
+function toast(msg,type=''){
+  const el=document.getElementById('toastel');
+  el.textContent=msg;el.className='toast '+type;el.classList.add('show');
+  clearTimeout(_tt);_tt=setTimeout(()=>el.classList.remove('show'),3000);
+}
+
+// ══════════════════════════════════════
+// SETTINGS
+// ══════════════════════════════════════
+function saveSettings(){
+  S.settings={
+    name:v('s-name'),biz:v('s-biz'),email:v('s-email'),phone:v('s-phone'),
+    addr:v('s-addr'),vat:v('s-vat'),bank:v('s-bank'),notes:v('s-notes')
+  };
+  const n=S.settings.biz||S.settings.name;
+  if(n){sv('sbName',n);sv('sbAvatar',n[0].toUpperCase());}
+  save();
+}
+function loadSettings(){
+  const s=S.settings;
+  ['name','biz','email','phone','addr','vat','bank','notes'].forEach(k=>{
+    const el=document.getElementById('s-'+k);if(el)el.value=s[k]||'';
+  });
+  const n=s.biz||s.name;
+  if(n){sv('sbName',n);sv('sbAvatar',n[0].toUpperCase());}
+}
+function v(id){const e=document.getElementById(id);return e?e.value:'';}
+function sv(id,val){const e=document.getElementById(id);if(e)e.textContent=val;}
+function se(id,val){const e=document.getElementById(id);if(e)e.value=val;}
+
+// ══════════════════════════════════════
+// CLIENTS
+// ══════════════════════════════════════
+function renderClients(){
+  const g=document.getElementById('clients-grid');if(!g)return;
+  if(!S.clients.length){
+    g.innerHTML=`<div class="empty" style="grid-column:1/-1"><div class="ei">👥</div><p>No clients saved yet.</p><button class="btn-new" onclick="showAddClient()">＋ Add First Client</button></div>`;return;
+  }
+  g.innerHTML=S.clients.map((c,i)=>`
+    <div class="client-card">
+      <div class="cli-av" style="background:${c.color||COLORS[0]}">${c.name[0].toUpperCase()}</div>
+      <div class="cli-name">${c.name}</div>
+      <div class="cli-email">${c.email||'No email'}</div>
+      <div class="cli-stats">
+        <div class="cli-stat"><div class="val">${S.invoices.filter(x=>x.cliName===c.name).length}</div><div class="lbl">Invoices</div></div>
+        <div class="cli-stat"><div class="val">${S.proposals.filter(x=>x.cliName===c.name).length}</div><div class="lbl">Proposals</div></div>
+        <div class="cli-stat"><div class="val">£${S.invoices.filter(x=>x.cliName===c.name&&x.status==='paid').reduce((s,x)=>s+x.total,0).toFixed(0)}</div><div class="lbl">Paid</div></div>
+      </div>
+    </div>`).join('');
+}
+function showAddClient(){document.getElementById('add-client-modal').style.display='flex';}
+function addClient(){
+  const name=v('nc-name').trim();
+  if(!name){toast('Enter a client name','err');return;}
+  if(S.clients.find(c=>c.name===name)){toast('Client already exists','err');return;}
+  S.clients.push({name,email:v('nc-email'),addr:v('nc-addr'),color:COLORS[S.clients.length%COLORS.length]});
+  save();closeModal('add-client-modal');
+  se('nc-name','');se('nc-email','');se('nc-addr','');
+  renderClients();toast('Client added!','ok');
+}
+function populateClientDropdowns(){
+  ['i-cli-sel','p-cli-sel'].forEach(id=>{
+    const el=document.getElementById(id);if(!el)return;
+    el.innerHTML='<option value="">— Select client or fill manually —</option>'+
+      S.clients.map((c,i)=>`<option value="${i}">${c.name}</option>`).join('');
+  });
+}
+function fillInvClient(idx){
+  if(idx==='')return;const c=S.clients[+idx];if(!c)return;
+  se('i-cli-name',c.name);se('i-cli-email',c.email||'');se('i-cli-addr',c.addr||'');invPreview();
+}
+function fillPropClient(idx){
+  if(idx==='')return;const c=S.clients[+idx];if(!c)return;
+  se('p-cli-name',c.name);se('p-cli-email',c.email||'');propPreview();
+}
+
+// ══════════════════════════════════════
+// INVOICE EDITOR
+// ══════════════════════════════════════
+let _editInvIdx=-1, _liCount=0;
+function startNewInvoice(){
+  _editInvIdx=-1;
+  document.getElementById('inv-list-view').style.display='none';
+  document.getElementById('inv-editor-view').style.display='block';
+  sv('inv-editor-title','New Invoice');
+  resetInvEditor();
+}
+function backToInvList(){
+  document.getElementById('inv-list-view').style.display='block';
+  document.getElementById('inv-editor-view').style.display='none';
+  renderInvTable();
+}
+function resetInvEditor(){
+  const s=S.settings;
+  const today=new Date().toISOString().split('T')[0];
+  const due=new Date(Date.now()+30*864e5).toISOString().split('T')[0];
+  se('i-num','INV-'+String(S.nextInv).padStart(3,'0'));
+  se('i-date',today);se('i-due',due);
+  se('i-biz',s.biz||s.name||'');se('i-biz-email',s.email||'');se('i-biz-addr',s.addr||'');
+  se('i-cli-name','');se('i-cli-email','');se('i-cli-addr','');
+  se('i-vat',20);
+  se('i-notes',s.bank?`Bank transfer to: ${s.bank}\n${s.notes||'Payment due within 30 days. Thank you!'}`:(s.notes||'Payment due within 30 days. Thank you for your business!'));
+  document.getElementById('inv-items').innerHTML='';_liCount=0;
+  addInvItem('Web Design Services',1,500);
+  populateClientDropdowns();invPreview();
+}
+function loadInvIntoEditor(inv){
+  se('i-num',inv.num);se('i-date',inv.date);se('i-due',inv.due);
+  se('i-biz',inv.bizName);se('i-biz-email',inv.bizEmail);se('i-biz-addr',inv.bizAddr);
+  se('i-cli-name',inv.cliName);se('i-cli-email',inv.cliEmail);se('i-cli-addr',inv.cliAddr);
+  se('i-vat',inv.vatRate);se('i-notes',inv.notes);
+  document.getElementById('inv-items').innerHTML='';_liCount=0;
+  (inv.items||[]).forEach(it=>addInvItem(it.desc,it.qty,it.price));
+  populateClientDropdowns();invPreview();
+}
+function addInvItem(desc='',qty=1,price=0){
+  const id=_liCount++;
+  const tr=document.createElement('tr');tr.id='ili-'+id;
+  tr.innerHTML=`<td><input value="${desc}" placeholder="Service" oninput="invPreview()" id="idesc-${id}"></td>
+    <td><input type="number" value="${qty}" min="1" oninput="invRecalc()" id="iqty-${id}" style="text-align:center"></td>
+    <td><input type="number" value="${price}" min="0" step="0.01" oninput="invRecalc()" id="iprice-${id}"></td>
+    <td id="itot-${id}" style="font-weight:600;padding:4px 8px">£${(qty*price).toFixed(2)}</td>
+    <td><button class="rm-btn" onclick="document.getElementById('ili-${id}').remove();invRecalc()">×</button></td>`;
+  document.getElementById('inv-items').appendChild(tr);invRecalc();
+}
+function invRecalc(){
+  let sub=0;
+  document.getElementById('inv-items').querySelectorAll('tr').forEach(r=>{
+    const id=r.id.replace('ili-','');
+    const q=parseFloat(document.getElementById('iqty-'+id)?.value||0);
+    const p=parseFloat(document.getElementById('iprice-'+id)?.value||0);
+    const t=q*p;const tel=document.getElementById('itot-'+id);if(tel)tel.textContent='£'+t.toFixed(2);
+    sub+=t;
+  });
+  const vr=parseFloat(document.getElementById('i-vat')?.value||0);
+  const vat=sub*vr/100;const grand=sub+vat;
+  sv('i-sub','£'+sub.toFixed(2));sv('i-vat-amt','£'+vat.toFixed(2));sv('i-grand','£'+grand.toFixed(2));
+  invPreview();
+}
+function getInvItems(){
+  return [...document.getElementById('inv-items').querySelectorAll('tr')].map(r=>{
+    const id=r.id.replace('ili-','');
+    return{desc:document.getElementById('idesc-'+id)?.value||'',
+      qty:parseFloat(document.getElementById('iqty-'+id)?.value||0),
+      price:parseFloat(document.getElementById('iprice-'+id)?.value||0)};
+  });
+}
+function invPreview(){
+  const tpl=S.invTpl||'modern';
+  const biz=v('i-biz')||'Your Business';
+  const bizEmail=v('i-biz-email');const bizAddr=v('i-biz-addr').replace(/\n/g,'<br>');
+  const cli=v('i-cli-name')||'Client Name';
+  const cliEmail=v('i-cli-email');const cliAddr=v('i-cli-addr').replace(/\n/g,'<br>');
+  const num=v('i-num')||'INV-001';const date=v('i-date');const due=v('i-due');
+  const notes=v('i-notes');const vr=parseFloat(v('i-vat')||0);
+  const items=getInvItems();
+  const sub=items.reduce((s,i)=>s+i.qty*i.price,0);
+  const vat=sub*vr/100;const grand=sub+vat;
+  const rows=items.map(i=>`<tr><td>${i.desc}</td><td style="text-align:center">${i.qty}</td><td style="text-align:right">£${i.price.toFixed(2)}</td><td style="text-align:right;font-weight:600">£${(i.qty*i.price).toFixed(2)}</td></tr>`).join('');
+  let header='';
+  if(tpl==='modern')header=`<div style="background:linear-gradient(135deg,#4f46e5,#06b6d4);color:#fff;padding:16px;border-radius:8px 8px 0 0;margin:-24px -24px 18px;display:flex;justify-content:space-between;align-items:center"><div><div style="font-size:1.1rem;font-weight:900">${biz}</div><div style="font-size:.7rem;opacity:.8">${bizEmail}</div></div><div style="text-align:right"><div style="font-size:.65rem;opacity:.7;text-transform:uppercase;letter-spacing:.06em">Invoice</div><div style="font-size:.95rem;font-weight:800">${num}</div></div></div>`;
+  else if(tpl==='minimal')header=`<div style="border-bottom:3px solid #4f46e5;padding-bottom:12px;margin-bottom:14px;display:flex;justify-content:space-between"><div style="font-size:1.1rem;font-weight:900;color:#4f46e5">${biz}</div><div style="text-align:right;font-size:.8rem"><div style="font-weight:800">${num}</div><div style="color:var(--muted)">${date}</div></div></div>`;
+  else if(tpl==='bold')header=`<div style="background:#1e293b;color:#fff;padding:16px;border-radius:8px 8px 0 0;margin:-24px -24px 18px"><div style="font-size:1.3rem;font-weight:900;letter-spacing:-.01em">${biz}</div><div style="display:flex;justify-content:space-between;margin-top:8px;font-size:.72rem;opacity:.7"><span>${bizEmail}</span><span style="font-size:.95rem;font-weight:800;color:#fff;opacity:1">${num}</span></div></div>`;
+  else header=`<div style="text-align:center;padding:16px 0;border-bottom:2px solid #e2e8f0;margin-bottom:16px"><div style="font-size:1.2rem;font-weight:900">${biz}</div><div style="font-size:.72rem;color:var(--muted);margin-top:3px">${bizEmail} · ${bizAddr.replace(/<br>/g,', ')}</div><div style="font-size:.85rem;font-weight:700;margin-top:8px;color:#4f46e5">INVOICE ${num}</div></div>`;
+  document.getElementById('inv-preview').innerHTML=`
+    ${header}
+    <div class="inv-parties"><div class="inv-party"><h4>Bill To</h4><p><strong>${cli}</strong><br>${cliEmail}<br>${cliAddr}</p></div>
+    <div class="inv-party" style="text-align:right"><h4>Amount Due</h4><p style="font-size:1.3rem;font-weight:900;color:#4f46e5">£${grand.toFixed(2)}</p><div style="font-size:.7rem;color:var(--muted);margin-top:3px">Due: ${due}</div></p></div></div>
+    <table class="inv-tbl"><thead><tr><th>Description</th><th style="text-align:center">Qty</th><th style="text-align:right">Price</th><th style="text-align:right">Total</th></tr></thead><tbody>${rows}</tbody></table>
+    <div class="inv-tots"><div class="inv-tot-row"><span>Subtotal</span><span>£${sub.toFixed(2)}</span></div><div class="inv-tot-row"><span>VAT (${vr}%)</span><span>£${vat.toFixed(2)}</span></div><div class="inv-tot-row grand"><span>Total Due</span><span>£${grand.toFixed(2)}</span></div></div>
+    ${notes?`<div class="inv-footer-note">${notes.replace(/\n/g,'<br>')}</div>`:''}`;
+}
+function saveInvoice(status){
+  const items=getInvItems();
+  const sub=items.reduce((s,i)=>s+i.qty*i.price,0);
+  const vr=parseFloat(v('i-vat')||0);const vat=sub*vr/100;const grand=sub+vat;
+  const inv={num:v('i-num'),date:v('i-date'),due:v('i-due'),bizName:v('i-biz'),bizEmail:v('i-biz-email'),
+    bizAddr:v('i-biz-addr'),cliName:v('i-cli-name'),cliEmail:v('i-cli-email'),cliAddr:v('i-cli-addr'),
+    notes:v('i-notes'),vatRate:vr,items,sub,vat,total:grand,status,savedAt:new Date().toISOString()};
+  // auto-save client
+  const cn=inv.cliName.trim();
+  if(cn&&!S.clients.find(c=>c.name===cn))
+    S.clients.push({name:cn,email:inv.cliEmail,addr:inv.cliAddr,color:COLORS[S.clients.length%COLORS.length]});
+  if(_editInvIdx>=0)S.invoices[_editInvIdx]=inv;
+  else{S.invoices.unshift(inv);S.nextInv++;}
+  save();
+  document.getElementById('inv-strip').textContent=status.toUpperCase();
+  toast(status==='draft'?'Draft saved!':'Invoice saved!','ok');
+  backToInvList();
+}
+function renderInvTable(){
+  const tb=document.getElementById('inv-tbody');if(!tb)return;
+  if(!S.invoices.length){tb.innerHTML=`<tr><td colspan="6" style="text-align:center;padding:36px;color:var(--muted)">No invoices yet. <strong style="color:var(--primary);cursor:pointer" onclick="startNewInvoice()">Create one →</strong></td></tr>`;return;}
+  tb.innerHTML=S.invoices.map((inv,i)=>`<tr>
+    <td><strong>${inv.num}</strong></td><td>${inv.cliName||'—'}</td><td>${inv.date||'—'}</td>
+    <td><strong>£${parseFloat(inv.total||0).toFixed(2)}</strong></td>
+    <td><span class="badge b-${inv.status}">${inv.status}</span></td>
+    <td><button class="act-btn" onclick="editInvoice(${i})">✏️</button>
+        <button class="act-btn" onclick="markInvPaid(${i})">✅</button>
+        <button class="act-btn" onclick="delInvoice(${i})">🗑️</button></td></tr>`).join('');
+}
+function editInvoice(i){
+  _editInvIdx=i;
+  document.getElementById('inv-list-view').style.display='none';
+  document.getElementById('inv-editor-view').style.display='block';
+  sv('inv-editor-title','Edit '+S.invoices[i].num);
+  loadInvIntoEditor(S.invoices[i]);
+}
+function markInvPaid(i){S.invoices[i].status='paid';save();renderInvTable();renderDashboard();toast('Marked as paid!','ok');}
+function delInvoice(i){if(!confirm('Delete this invoice?'))return;S.invoices.splice(i,1);save();renderInvTable();renderDashboard();}
+
+// ══════════════════════════════════════
+// INVOICE PDF
+// ══════════════════════════════════════
+function dlInvoicePDF(){
+  try{
+    const{jsPDF}=window.jspdf;const doc=new jsPDF({unit:'mm',format:'a4'});
+    const W=210,M=20;
+    const biz=v('i-biz')||'Your Business';const bizEmail=v('i-biz-email');
+    const bizAddr=v('i-biz-addr');const cli=v('i-cli-name')||'Client';
+    const cliEmail=v('i-cli-email');const cliAddr=v('i-cli-addr');
+    const num=v('i-num')||'INV-001';const date=v('i-date');const due=v('i-due');
+    const notes=v('i-notes');const vr=parseFloat(v('i-vat')||0);
+    const items=getInvItems();
+    const sub=items.reduce((s,i)=>s+i.qty*i.price,0);
+    const vat=sub*vr/100;const grand=sub+vat;
+    // Header
+    doc.setFillColor(79,70,229);doc.rect(0,0,W,26,'F');
+    doc.setTextColor(255,255,255);doc.setFontSize(16);doc.setFont('helvetica','bold');
+    doc.text(biz,M,16);
+    doc.setFontSize(9);doc.setFont('helvetica','normal');
+    doc.text('INVOICE',W-M,11,{align:'right'});
+    doc.setFontSize(13);doc.setFont('helvetica','bold');doc.text(num,W-M,20,{align:'right'});
+    // Biz info
+    doc.setTextColor(100,116,139);doc.setFontSize(8);doc.setFont('helvetica','normal');
+    let y=34;
+    const bizLines=[bizEmail,...(bizAddr||'').split('\n')].filter(Boolean);
+    doc.text(bizLines,M,y);
+    doc.text(`Issued: ${date}`,W-M,y,{align:'right'});
+    doc.text(`Due: ${due}`,W-M,y+5,{align:'right'});
+    // Bill to
+    y=56;doc.setTextColor(79,70,229);doc.setFontSize(7.5);doc.setFont('helvetica','bold');doc.text('BILL TO',M,y);
+    doc.setTextColor(30,41,59);doc.setFontSize(10);doc.text(cli,M,y+6);
+    doc.setFontSize(7.5);doc.setFont('helvetica','normal');doc.setTextColor(100,116,139);
+    doc.text([cliEmail,...(cliAddr||'').split('\n')].filter(Boolean),M,y+12);
+    // Amount box
+    doc.setFillColor(240,244,255);doc.roundedRect(W-74,y-2,54,22,3,3,'F');
+    doc.setTextColor(100,116,139);doc.setFontSize(6.5);doc.text('AMOUNT DUE',W-47,y+4,{align:'center'});
+    doc.setTextColor(79,70,229);doc.setFontSize(14);doc.setFont('helvetica','bold');
+    doc.text(`£${grand.toFixed(2)}`,W-47,y+14,{align:'center'});
+    // Table
+    y=88;doc.setFillColor(248,250,252);doc.rect(M,y,W-2*M,8,'F');
+    doc.setTextColor(100,116,139);doc.setFontSize(7);doc.setFont('helvetica','bold');
+    doc.text('DESCRIPTION',M+2,y+5.5);doc.text('QTY',130,y+5.5,{align:'right'});
+    doc.text('UNIT PRICE',154,y+5.5,{align:'right'});doc.text('TOTAL',W-M-2,y+5.5,{align:'right'});
+    y+=10;
+    items.forEach((item,idx)=>{
+      if(idx%2===1){doc.setFillColor(252,252,255);doc.rect(M,y-2,W-2*M,8,'F');}
+      doc.setTextColor(30,41,59);doc.setFontSize(8.5);doc.setFont('helvetica','normal');
+      doc.text(item.desc,M+2,y+3.5);doc.text(String(item.qty),130,y+3.5,{align:'right'});
+      doc.text(`£${item.price.toFixed(2)}`,154,y+3.5,{align:'right'});
+      doc.setFont('helvetica','bold');doc.text(`£${(item.qty*item.price).toFixed(2)}`,W-M-2,y+3.5,{align:'right'});
+      y+=8;
+    });
+    y+=4;doc.setDrawColor(226,232,240);doc.line(120,y,W-M,y);y+=5;
+    doc.setFontSize(8);doc.setFont('helvetica','normal');doc.setTextColor(100,116,139);
+    doc.text('Subtotal',154,y,{align:'right'});doc.setTextColor(30,41,59);doc.text(`£${sub.toFixed(2)}`,W-M-2,y,{align:'right'});y+=5.5;
+    doc.setTextColor(100,116,139);doc.text(`VAT (${vr}%)`,154,y,{align:'right'});doc.setTextColor(30,41,59);doc.text(`£${vat.toFixed(2)}`,W-M-2,y,{align:'right'});y+=7;
+    doc.setFillColor(79,70,229);doc.rect(118,y-3,W-118-M,10,'F');
+    doc.setTextColor(255,255,255);doc.setFont('helvetica','bold');doc.setFontSize(9.5);
+    doc.text('TOTAL DUE',154,y+4,{align:'right'});doc.text(`£${grand.toFixed(2)}`,W-M-2,y+4,{align:'right'});
+    if(notes){y+=16;doc.setTextColor(100,116,139);doc.setFontSize(7);doc.setFont('helvetica','bold');doc.text('NOTES',M,y);
+      doc.setFont('helvetica','normal');doc.setTextColor(30,41,59);doc.text(notes,M,y+5,{maxWidth:W-2*M});}
+    doc.setFillColor(248,250,252);doc.rect(0,285,W,12,'F');
+    doc.setTextColor(148,163,184);doc.setFontSize(6.5);doc.setFont('helvetica','normal');
+    doc.text('Generated by InvoiceFlow · invoiceflow.app',W/2,292,{align:'center'});
+    doc.save(`${num}.pdf`);toast('PDF downloaded!','ok');
+  }catch(e){toast('PDF error: '+e.message,'err');}
+}
+
+// ══════════════════════════════════════
+// PROPOSAL EDITOR
+// ══════════════════════════════════════
+let _editPropIdx=-1,_plCount=0,_ptCount=0;
+function startNewProposal(){
+  _editPropIdx=-1;
+  document.getElementById('prop-list-view').style.display='none';
+  document.getElementById('prop-editor-view').style.display='block';
+  sv('prop-editor-title','New Proposal');
+  resetPropEditor();
+}
+function backToPropList(){
+  document.getElementById('prop-list-view').style.display='block';
+  document.getElementById('prop-editor-view').style.display='none';
+  renderPropTable();
+}
+function resetPropEditor(){
+  const s=S.settings;
+  const today=new Date().toISOString().split('T')[0];
+  const valid=new Date(Date.now()+30*864e5).toISOString().split('T')[0];
+  se('p-num','PROP-'+String(S.nextProp).padStart(3,'0'));
+  se('p-date',today);se('p-valid',valid);
+  se('p-title','');se('p-biz',s.biz||s.name||'');se('p-biz-email',s.email||'');
+  se('p-cli-name','');se('p-cli-email','');
+  se('p-desc','');se('p-deliverables','');se('p-vat',20);
+  se('p-terms','50% deposit required to begin. Remaining 50% due on completion. This proposal is valid for 30 days.');
+  document.getElementById('p-timeline').innerHTML='';_ptCount=0;
+  document.getElementById('prop-items').innerHTML='';_plCount=0;
+  addTimeline('Discovery & Planning','1 week','Kick-off call, requirements gathering');
+  addTimeline('Design','2 weeks','Wireframes and visual design');
+  addTimeline('Development','3 weeks','Build, test, and revisions');
+  addTimeline('Launch','1 week','Final review, launch, handover');
+  addPropItem('Project Design & Development',1,1500);
+  populateClientDropdowns();propPreview();
+}
+function loadPropIntoEditor(p){
+  se('p-num',p.num);se('p-date',p.date);se('p-valid',p.valid);
+  se('p-title',p.title);se('p-biz',p.bizName);se('p-biz-email',p.bizEmail);
+  se('p-cli-name',p.cliName);se('p-cli-email',p.cliEmail);
+  se('p-desc',p.desc);se('p-deliverables',p.deliverables);
+  se('p-vat',p.vatRate);se('p-terms',p.terms);
+  document.getElementById('p-timeline').innerHTML='';_ptCount=0;
+  (p.timeline||[]).forEach(t=>addTimeline(t.phase,t.dur,t.desc));
+  document.getElementById('prop-items').innerHTML='';_plCount=0;
+  (p.items||[]).forEach(it=>addPropItem(it.desc,it.qty,it.price));
+  populateClientDropdowns();propPreview();
+}
+function addTimeline(phase='',dur='',desc=''){
+  const id=_ptCount++;
+  const tr=document.createElement('tr');tr.id='ptl-'+id;
+  tr.innerHTML=`<td><input value="${phase}" placeholder="Phase name" oninput="propPreview()" id="ptphase-${id}"></td>
+    <td><input value="${dur}" placeholder="e.g. 2 weeks" oninput="propPreview()" id="ptdur-${id}"></td>
+    <td><input value="${desc}" placeholder="Description" oninput="propPreview()" id="ptdesc-${id}"></td>
+    <td><button class="rm-btn" onclick="document.getElementById('ptl-${id}').remove();propPreview()">×</button></td>`;
+  document.getElementById('p-timeline').appendChild(tr);propPreview();
+}
+function addPropItem(desc='',qty=1,price=0){
+  const id=_plCount++;
+  const tr=document.createElement('tr');tr.id='pli-'+id;
+  tr.innerHTML=`<td><input value="${desc}" placeholder="Item" oninput="propPreview()" id="pdesc-${id}"></td>
+    <td><input type="number" value="${qty}" min="1" oninput="propRecalc()" id="pqty-${id}" style="text-align:center"></td>
+    <td><input type="number" value="${price}" min="0" step="0.01" oninput="propRecalc()" id="pprice-${id}"></td>
+    <td id="ptot-${id}" style="font-weight:600;padding:4px 8px">£${(qty*price).toFixed(2)}</td>
+    <td><button class="rm-btn" onclick="document.getElementById('pli-${id}').remove();propRecalc()">×</button></td>`;
+  document.getElementById('prop-items').appendChild(tr);propRecalc();
+}
+function propRecalc(){
+  let sub=0;
+  document.getElementById('prop-items').querySelectorAll('tr').forEach(r=>{
+    const id=r.id.replace('pli-','');
+    const q=parseFloat(document.getElementById('pqty-'+id)?.value||0);
+    const p=parseFloat(document.getElementById('pprice-'+id)?.value||0);
+    const t=q*p;const tel=document.getElementById('ptot-'+id);if(tel)tel.textContent='£'+t.toFixed(2);
+    sub+=t;
+  });
+  const vr=parseFloat(document.getElementById('p-vat')?.value||0);
+  const vat=sub*vr/100;const grand=sub+vat;
+  sv('p-sub','£'+sub.toFixed(2));sv('p-vat-amt','£'+vat.toFixed(2));sv('p-grand','£'+grand.toFixed(2));
+  propPreview();
+}
+function getPropItems(){
+  return[...document.getElementById('prop-items').querySelectorAll('tr')].map(r=>{
+    const id=r.id.replace('pli-','');
+    return{desc:document.getElementById('pdesc-'+id)?.value||'',
+      qty:parseFloat(document.getElementById('pqty-'+id)?.value||0),
+      price:parseFloat(document.getElementById('pprice-'+id)?.value||0)};
+  });
+}
+function getPropTimeline(){
+  return[...document.getElementById('p-timeline').querySelectorAll('tr')].map(r=>{
+    const id=r.id.replace('ptl-','');
+    return{phase:document.getElementById('ptphase-'+id)?.value||'',
+      dur:document.getElementById('ptdur-'+id)?.value||'',
+      desc:document.getElementById('ptdesc-'+id)?.value||''};
+  });
+}
+function propPreview(){
+  const tpl=S.propTpl||'gradient';
+  const biz=v('p-biz')||'Your Business';const bizEmail=v('p-biz-email');
+  const cli=v('p-cli-name')||'Client Name';const cliEmail=v('p-cli-email');
+  const num=v('p-num')||'PROP-001';const date=v('p-date');const valid=v('p-valid');
+  const title=v('p-title')||'Project Proposal';
+  const desc=v('p-desc');const deliverables=v('p-deliverables');
+  const terms=v('p-terms');const vr=parseFloat(v('p-vat')||0);
+  const items=getPropItems();const tl=getPropTimeline();
+  const sub=items.reduce((s,i)=>s+i.qty*i.price,0);
+  const vat=sub*vr/100;const grand=sub+vat;
+
+  let coverStyle='background:linear-gradient(135deg,#4f46e5,#06b6d4);color:#fff';
+  if(tpl==='dark')coverStyle='background:linear-gradient(135deg,#1e293b,#334155);color:#fff';
+  if(tpl==='minimal')coverStyle='background:#f8fafc;color:#1e293b;border-bottom:3px solid #4f46e5';
+  if(tpl==='warm')coverStyle='background:linear-gradient(135deg,#f59e0b,#ef4444);color:#fff';
+
+  const delivLines=(deliverables||'').split('\n').filter(l=>l.trim()).map(l=>`<div class="prop-deliv-item">${l.trim()}</div>`).join('');
+  const tlHtml=tl.map(t=>`<div class="prop-tl-row"><div class="prop-tl-dot"></div><div class="prop-tl-label">${t.phase}</div><div style="color:var(--muted);font-size:.75rem;min-width:60px">${t.dur}</div><div class="prop-tl-desc">${t.desc}</div></div>`).join('');
+  const priceRows=items.map(i=>`<div style="display:flex;justify-content:space-between;font-size:.78rem;padding:4px 0;border-bottom:1px solid var(--border)"><span>${i.desc}</span><span style="font-weight:600">£${(i.qty*i.price).toFixed(2)}</span></div>`).join('');
+
+  document.getElementById('prop-preview').innerHTML=`
+    <div style="${coverStyle};padding:22px;border-radius:8px 8px 0 0;margin:-24px -24px 18px">
+      <div style="font-size:.7rem;opacity:.7;text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px">Project Proposal · ${num}</div>
+      <div style="font-size:1.25rem;font-weight:900;margin-bottom:4px">${title}</div>
+      <div style="font-size:.78rem;opacity:.85">Prepared for <strong>${cli}</strong> by ${biz}</div>
+      <div style="font-size:.72rem;opacity:.7;margin-top:4px">Date: ${date} · Valid until: ${valid}</div>
+    </div>
+    ${desc?`<div class="prop-section-title">Project Overview</div><div class="prop-body-text">${desc.replace(/\n/g,'<br>')}</div>`:''}
+    ${delivLines?`<div class="prop-section-title">What's Included</div><div>${delivLines}</div>`:''}
+    ${tlHtml?`<div class="prop-section-title">Timeline</div><div class="prop-timeline">${tlHtml}</div>`:''}
+    <div class="prop-section-title">Investment</div>
+    <div>${priceRows}</div>
+    <div style="margin-top:8px">
+      <div style="display:flex;justify-content:space-between;font-size:.78rem;padding:3px 0"><span style="color:var(--muted)">Subtotal</span><span>£${sub.toFixed(2)}</span></div>
+      <div style="display:flex;justify-content:space-between;font-size:.78rem;padding:3px 0"><span style="color:var(--muted)">VAT (${vr}%)</span><span>£${vat.toFixed(2)}</span></div>
+      <div style="display:flex;justify-content:space-between;font-size:.92rem;font-weight:800;color:#4f46e5;padding:6px 0;border-top:2px solid #e0e7ff;margin-top:4px"><span>Total Investment</span><span>£${grand.toFixed(2)}</span></div>
+    </div>
+    ${terms?`<div class="prop-section-title">Terms & Next Steps</div><div class="prop-terms">${terms.replace(/\n/g,'<br>')}</div>`:''}
+    <div style="text-align:center;margin-top:18px;font-size:.75rem;color:var(--muted)">— ${biz} · ${bizEmail} —</div>`;
+}
+function saveProposal(status){
+  const items=getPropItems();const tl=getPropTimeline();
+  const sub=items.reduce((s,i)=>s+i.qty*i.price,0);
+  const vr=parseFloat(v('p-vat')||0);const vat=sub*vr/100;const grand=sub+vat;
+  const prop={num:v('p-num'),date:v('p-date'),valid:v('p-valid'),title:v('p-title'),
+    bizName:v('p-biz'),bizEmail:v('p-biz-email'),cliName:v('p-cli-name'),cliEmail:v('p-cli-email'),
+    desc:v('p-desc'),deliverables:v('p-deliverables'),timeline:tl,terms:v('p-terms'),
+    vatRate:vr,items,sub,vat,total:grand,status,savedAt:new Date().toISOString()};
+  const cn=prop.cliName.trim();
+  if(cn&&!S.clients.find(c=>c.name===cn))
+    S.clients.push({name:cn,email:prop.cliEmail,addr:'',color:COLORS[S.clients.length%COLORS.length]});
+  if(_editPropIdx>=0)S.proposals[_editPropIdx]=prop;
+  else{S.proposals.unshift(prop);S.nextProp++;}
+  save();toast(status==='draft'?'Draft saved!':'Proposal saved!','ok');backToPropList();
+}
+function renderPropTable(){
+  const tb=document.getElementById('prop-tbody');if(!tb)return;
+  if(!S.proposals.length){tb.innerHTML=`<tr><td colspan="6" style="text-align:center;padding:36px;color:var(--muted)">No proposals yet. <strong style="color:var(--primary);cursor:pointer" onclick="startNewProposal()">Create one →</strong></td></tr>`;return;}
+  tb.innerHTML=S.proposals.map((p,i)=>`<tr>
+    <td><strong>${p.num}</strong></td><td>${p.title||'—'}</td><td>${p.cliName||'—'}</td>
+    <td><strong>£${parseFloat(p.total||0).toFixed(2)}</strong></td>
+    <td><span class="badge b-${p.status}">${p.status}</span></td>
+    <td><button class="act-btn" onclick="editProposal(${i})">✏️</button>
+        <button class="act-btn" onclick="markPropAccepted(${i})">✅</button>
+        <button class="act-btn" onclick="delProposal(${i})">🗑️</button></td></tr>`).join('');
+}
+function editProposal(i){
+  _editPropIdx=i;
+  document.getElementById('prop-list-view').style.display='none';
+  document.getElementById('prop-editor-view').style.display='block';
+  sv('prop-editor-title','Edit '+S.proposals[i].num);
+  loadPropIntoEditor(S.proposals[i]);
+}
+function markPropAccepted(i){S.proposals[i].status='accepted';save();renderPropTable();toast('Proposal accepted!','ok');}
+function delProposal(i){if(!confirm('Delete this proposal?'))return;S.proposals.splice(i,1);save();renderPropTable();}
+
+// ══════════════════════════════════════
+// PROPOSAL PDF
+// ══════════════════════════════════════
+function dlProposalPDF(){
+  try{
+    const{jsPDF}=window.jspdf;const doc=new jsPDF({unit:'mm',format:'a4'});
+    const W=210,M=20;
+    const biz=v('p-biz')||'Your Business';const bizEmail=v('p-biz-email');
+    const cli=v('p-cli-name')||'Client';const cliEmail=v('p-cli-email');
+    const num=v('p-num')||'PROP-001';const date=v('p-date');const valid=v('p-valid');
+    const title=v('p-title')||'Project Proposal';
+    const desc=v('p-desc');const deliverables=v('p-deliverables');
+    const terms=v('p-terms');const vr=parseFloat(v('p-vat')||0);
+    const items=getPropItems();const tl=getPropTimeline();
+    const sub=items.reduce((s,i)=>s+i.qty*i.price,0);
+    const vat=sub*vr/100;const grand=sub+vat;
+
+    // Cover
+    doc.setFillColor(79,70,229);doc.rect(0,0,W,50,'F');
+    doc.setFillColor(6,182,212);doc.circle(W+10,55,45,'F');
+    doc.setTextColor(255,255,255);
+    doc.setFontSize(8);doc.setFont('helvetica','normal');doc.text('PROJECT PROPOSAL · '+num,M,16);
+    doc.setFontSize(18);doc.setFont('helvetica','bold');doc.text(title,M,28,{maxWidth:W-2*M});
+    doc.setFontSize(9);doc.setFont('helvetica','normal');
+    doc.text(`Prepared for ${cli} by ${biz}`,M,40);
+    doc.text(`${date} · Valid until ${valid}`,M,46);
+
+    let y=62;
+    const addSection=(heading)=>{
+      doc.setFillColor(240,244,255);doc.rect(M,y-3,W-2*M,8,'F');
+      doc.setTextColor(79,70,229);doc.setFontSize(8);doc.setFont('helvetica','bold');
+      doc.text(heading.toUpperCase(),M+2,y+2.5);y+=10;
+    };
+    const addBody=(text,maxW=W-2*M)=>{
+      doc.setTextColor(30,41,59);doc.setFontSize(8.5);doc.setFont('helvetica','normal');
+      const lines=doc.splitTextToSize(text,maxW);
+      doc.text(lines,M,y);y+=lines.length*4.5+3;
+    };
+
+    if(desc){addSection('Project Overview');addBody(desc);}
+    if(deliverables){
+      addSection("What's Included");
+      deliverables.split('\n').filter(l=>l.trim()).forEach(l=>{
+        doc.setTextColor(16,185,129);doc.setFontSize(9);doc.text('✓',M,y);
+        doc.setTextColor(30,41,59);doc.setFontSize(8.5);doc.setFont('helvetica','normal');
+        doc.text(l.trim(),M+5,y,{maxWidth:W-2*M-5});y+=5;
+      });y+=3;
+    }
+    if(tl.length){
+      addSection('Project Timeline');
+      tl.forEach(t=>{
+        doc.setTextColor(79,70,229);doc.setFontSize(8.5);doc.setFont('helvetica','bold');
+        doc.text(`${t.phase} (${t.dur})`,M,y);
+        doc.setTextColor(100,116,139);doc.setFont('helvetica','normal');doc.setFontSize(8);
+        if(t.desc)doc.text(t.desc,M,y+4.5);
+        y+=t.desc?10:6;
+      });y+=3;
+    }
+    // Check page space
+    if(y>230){doc.addPage();y=20;}
+    addSection('Investment');
+    items.forEach(it=>{
+      doc.setTextColor(30,41,59);doc.setFontSize(8.5);doc.setFont('helvetica','normal');
+      doc.text(it.desc,M,y);
+      doc.setFont('helvetica','bold');doc.text(`£${(it.qty*it.price).toFixed(2)}`,W-M,y,{align:'right'});
+      y+=5.5;
+    });
+    y+=2;doc.setDrawColor(226,232,240);doc.line(130,y,W-M,y);y+=4;
+    doc.setFont('helvetica','normal');doc.setTextColor(100,116,139);doc.setFontSize(8);
+    doc.text('Subtotal',W-M-22,y,{align:'right'});doc.setTextColor(30,41,59);doc.text(`£${sub.toFixed(2)}`,W-M,y,{align:'right'});y+=5;
+    doc.setTextColor(100,116,139);doc.text(`VAT (${vr}%)`,W-M-22,y,{align:'right'});doc.setTextColor(30,41,59);doc.text(`£${vat.toFixed(2)}`,W-M,y,{align:'right'});y+=6;
+    doc.setFillColor(79,70,229);doc.rect(118,y-3,W-118-M,10,'F');
+    doc.setTextColor(255,255,255);doc.setFont('helvetica','bold');doc.setFontSize(9.5);
+    doc.text('TOTAL INVESTMENT',W-M-24,y+4,{align:'right'});doc.text(`£${grand.toFixed(2)}`,W-M,y+4,{align:'right'});
+    y+=14;
+    if(terms){addSection('Terms & Next Steps');addBody(terms);}
+    // Footer
+    doc.setFillColor(248,250,252);doc.rect(0,285,W,12,'F');
+    doc.setTextColor(148,163,184);doc.setFontSize(6.5);doc.setFont('helvetica','normal');
+    doc.text(`${biz} · ${bizEmail} · Generated by InvoiceFlow`,W/2,292,{align:'center'});
+    doc.save(`${num}.pdf`);toast('Proposal PDF downloaded!','ok');
+  }catch(e){toast('PDF error: '+e.message,'err');}
+}
+
+// ══════════════════════════════════════
+// TEMPLATES
+// ══════════════════════════════════════
+const INV_TPLS=[
+  {id:'modern',name:'Modern Gradient',desc:'Bold gradient header with clean layout',bg:'linear-gradient(135deg,#4f46e5,#06b6d4)',emoji:'🎨',tag:'Popular'},
+  {id:'minimal',name:'Minimal',desc:'Clean lines, no frills — pure professionalism',bg:'#f8fafc',emoji:'⬜',tag:'Clean'},
+  {id:'bold',name:'Bold Dark',desc:'Dark header for a premium, confident look',bg:'#1e293b',emoji:'🖤',tag:'Premium'},
+  {id:'classic',name:'Classic',desc:'Traditional centred layout — timeless style',bg:'#fff',emoji:'📜',tag:'Traditional'},
+];
+const PROP_TPLS=[
+  {id:'gradient',name:'Gradient Cover',desc:'Vibrant indigo-to-cyan cover page',bg:'linear-gradient(135deg,#4f46e5,#06b6d4)',emoji:'🌈',tag:'Popular'},
+  {id:'dark',name:'Dark Professional',desc:'Sleek dark gradient — serious and confident',bg:'linear-gradient(135deg,#1e293b,#334155)',emoji:'🌙',tag:'Premium'},
+  {id:'minimal',name:'Minimal White',desc:'Light header with indigo accent line',bg:'#f8fafc',emoji:'📄',tag:'Clean'},
+  {id:'warm',name:'Warm Sunset',desc:'Amber to red — energetic and creative',bg:'linear-gradient(135deg,#f59e0b,#ef4444)',emoji:'🌅',tag:'Creative'},
+];
+function renderTemplates(){
+  const ig=document.getElementById('inv-tpl-grid');
+  const pg=document.getElementById('prop-tpl-grid');
+  if(ig)ig.innerHTML=INV_TPLS.map(t=>`
+    <div class="tpl-card${S.invTpl===t.id?' active-tpl':''}" onclick="selectTpl('inv','${t.id}')">
+      <div class="tpl-thumb" style="background:${t.bg}">
+        <span style="font-size:2.5rem">${t.emoji}</span>
+        <div class="tpl-check">✓</div>
+      </div>
+      <div class="tpl-info"><div class="tpl-name">${t.name}</div><div class="tpl-desc">${t.desc}</div><span class="tpl-tag">${t.tag}</span></div>
+    </div>`).join('');
+  if(pg)pg.innerHTML=PROP_TPLS.map(t=>`
+    <div class="tpl-card${S.propTpl===t.id?' active-tpl':''}" onclick="selectTpl('prop','${t.id}')">
+      <div class="tpl-thumb" style="background:${t.bg}">
+        <span style="font-size:2.5rem">${t.emoji}</span>
+        <div class="tpl-check">✓</div>
+      </div>
+      <div class="tpl-info"><div class="tpl-name">${t.name}</div><div class="tpl-desc">${t.desc}</div><span class="tpl-tag">${t.tag}</span></div>
+    </div>`).join('');
+}
+function selectTpl(type,id){
+  if(type==='inv')S.invTpl=id;else S.propTpl=id;
+  save();renderTemplates();
+  toast(`Template set to ${id}!`,'ok');
+}
+
+// ══════════════════════════════════════
+// DASHBOARD
+// ══════════════════════════════════════
+function renderDashboard(){
+  const paid=S.invoices.filter(i=>i.status==='paid');
+  const pending=S.invoices.filter(i=>i.status==='pending'||i.status==='draft');
+  const rev=paid.reduce((s,i)=>s+i.total,0);
+  const out=pending.reduce((s,i)=>s+i.total,0);
+  sv('ds-rev','£'+rev.toFixed(2));sv('ds-out','£'+out.toFixed(2));
+  sv('ds-inv',String(S.invoices.length));sv('ds-prop',String(S.proposals.length));sv('ds-cli',String(S.clients.length));
+
+  const mkTable=(items,type)=>{
+    if(!items.length)return`<div class="empty" style="padding:28px"><div class="ei" style="font-size:2rem">📭</div><p style="font-size:.88rem">None yet.</p></div>`;
+    if(type==='inv')return`<table><thead><tr><th>#</th><th>Client</th><th>Amount</th><th>Status</th></tr></thead><tbody>${items.slice(0,5).map(x=>`<tr><td><strong>${x.num}</strong></td><td>${x.cliName||'—'}</td><td><strong>£${parseFloat(x.total||0).toFixed(2)}</strong></td><td><span class="badge b-${x.status}">${x.status}</span></td></tr>`).join('')}</tbody></table>`;
+    return`<table><thead><tr><th>#</th><th>Project</th><th>Client</th><th>Value</th><th>Status</th></tr></thead><tbody>${items.slice(0,5).map(x=>`<tr><td><strong>${x.num}</strong></td><td>${x.title||'—'}</td><td>${x.cliName||'—'}</td><td><strong>£${parseFloat(x.total||0).toFixed(2)}</strong></td><td><span class="badge b-${x.status}">${x.status}</span></td></tr>`).join('')}</tbody></table>`;
+  };
+  const dil=document.getElementById('ds-inv-list');if(dil)dil.innerHTML=mkTable(S.invoices,'inv');
+  const dpl=document.getElementById('ds-prop-list');if(dpl)dpl.innerHTML=mkTable(S.proposals,'prop');
+}
+
+// ══════════════════════════════════════
+// REPORTS
+// ══════════════════════════════════════
+function renderReports(){
+  // Stats
+  const paid=S.invoices.filter(i=>i.status==='paid');
+  const rev=paid.reduce((s,i)=>s+i.total,0);
+  const out=S.invoices.filter(i=>i.status==='pending').reduce((s,i)=>s+i.total,0);
+  const ovd=S.invoices.filter(i=>i.status==='overdue').reduce((s,i)=>s+i.total,0);
+  const propAcc=S.proposals.filter(p=>p.status==='accepted');
+  const convRate=S.proposals.length?Math.round(propAcc.length/S.proposals.length*100):0;
+  const rs=document.getElementById('report-stats');
+  if(rs)rs.innerHTML=`
+    <div class="stat"><div class="stat-lbl">Total Revenue</div><div class="stat-val">£${rev.toFixed(0)}</div><div class="stat-sub up">from paid invoices</div></div>
+    <div class="stat"><div class="stat-lbl">Outstanding</div><div class="stat-val">£${out.toFixed(0)}</div><div class="stat-sub">pending payment</div></div>
+    <div class="stat"><div class="stat-lbl">Overdue</div><div class="stat-val" style="color:var(--danger)">£${ovd.toFixed(0)}</div><div class="stat-sub dn">needs chasing</div></div>
+    <div class="stat"><div class="stat-lbl">Proposal Conv.</div><div class="stat-val">${convRate}%</div><div class="stat-sub">${propAcc.length} of ${S.proposals.length} accepted</div></div>`;
+
+  // Monthly revenue (last 6 months)
+  const months=[];const now=new Date();
+  for(let i=5;i>=0;i--){const d=new Date(now.getFullYear(),now.getMonth()-i,1);months.push({label:d.toLocaleString('default',{month:'short'}),year:d.getFullYear(),month:d.getMonth(),rev:0});}
+  S.invoices.filter(i=>i.status==='paid').forEach(inv=>{
+    const d=new Date(inv.savedAt||inv.date||0);
+    const m=months.find(x=>x.month===d.getMonth()&&x.year===d.getFullYear());
+    if(m)m.rev+=inv.total;
+  });
+  const maxRev=Math.max(...months.map(m=>m.rev),1);
+  const mc=document.getElementById('monthly-chart');
+  if(mc)mc.innerHTML=months.map(m=>`<div class="bar-row"><div class="bar-label">${m.label}</div><div class="bar-track"><div class="bar-fill" style="width:${Math.max(m.rev/maxRev*100,4)}%">£${m.rev>0?m.rev.toFixed(0):''}</div></div></div>`).join('');
+
+  // Status breakdown
+  const statuses=['paid','pending','draft','overdue'];
+  const statColors={'paid':'#10b981','pending':'#f59e0b','draft':'#94a3b8','overdue':'#ef4444'};
+  const sc=document.getElementById('status-chart');
+  if(sc)sc.innerHTML=statuses.map(s=>{
+    const c=S.invoices.filter(i=>i.status===s).length;
+    const val=S.invoices.filter(i=>i.status===s).reduce((t,i)=>t+i.total,0);
+    return`<div class="pie-row"><div class="pie-dot" style="background:${statColors[s]}"></div><div class="pie-name">${s.charAt(0).toUpperCase()+s.slice(1)} (${c})</div><div class="pie-val">£${val.toFixed(0)}</div></div>`;
+  }).join('');
+
+  // Top clients
+  const cliRev={};S.invoices.filter(i=>i.status==='paid').forEach(inv=>{if(inv.cliName)cliRev[inv.cliName]=(cliRev[inv.cliName]||0)+inv.total;});
+  const topCli=Object.entries(cliRev).sort((a,b)=>b[1]-a[1]).slice(0,5);
+  const maxCli=Math.max(...topCli.map(c=>c[1]),1);
+  const cc=document.getElementById('client-chart');
+  if(cc)cc.innerHTML=topCli.length?topCli.map(([name,rev])=>`<div class="bar-row"><div class="bar-label" style="font-size:.75rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${name.split(' ')[0]}</div><div class="bar-track"><div class="bar-fill accent" style="width:${Math.max(rev/maxCli*100,4)}%">£${rev.toFixed(0)}</div></div></div>`).join('')
+    :`<div style="color:var(--muted);font-size:.88rem;padding:10px">No paid invoices yet.</div>`;
+
+  // Proposal conversion
+  const pst=['draft','sent','accepted','declined'];
+  const pstColors={'draft':'#94a3b8','sent':'#3b82f6','accepted':'#10b981','declined':'#ef4444'};
+  const pc=document.getElementById('prop-chart');
+  if(pc)pc.innerHTML=pst.map(s=>{
+    const c=S.proposals.filter(p=>p.status===s).length;
+    const val=S.proposals.filter(p=>p.status===s).reduce((t,p)=>t+p.total,0);
+    return`<div class="pie-row"><div class="pie-dot" style="background:${pstColors[s]}"></div><div class="pie-name">${s.charAt(0).toUpperCase()+s.slice(1)} (${c})</div><div class="pie-val">£${val.toFixed(0)}</div></div>`;
+  }).join('');
+}
+
+// ══════════════════════════════════════
+// UTILS
+// ══════════════════════════════════════
+function copyLink(){
+  navigator.clipboard.writeText(window.location.href).then(()=>toast('Link copied!','ok')).catch(()=>toast('Copy the URL from your address bar',''));
+}
+
+// Input watchers for invoice live preview
+document.addEventListener('DOMContentLoaded',()=>{
+  ['i-num','i-date','i-due','i-biz','i-biz-email','i-biz-addr','i-notes'].forEach(id=>{
+    const el=document.getElementById(id);if(el)el.addEventListener('input',invPreview);
+  });
+  ['p-num','p-date','p-valid','p-title','p-biz','p-biz-email','p-terms'].forEach(id=>{
+    const el=document.getElementById(id);if(el)el.addEventListener('input',propPreview);
+  });
+});
+</script>
+</body>
+</html>
